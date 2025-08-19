@@ -1,0 +1,10 @@
+springdoc:
+  api-docs:
+    enabled: true
+#  swagger-ui:  ##配置后返回404
+#    path: /swagger-ui.html
+#    title: AiDi
+#    version: 1.0.0
+
+
+
