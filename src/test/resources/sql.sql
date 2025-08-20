@@ -14,7 +14,7 @@ CREATE TABLE consumer_charge (
     id INT AUTO_INCREMENT PRIMARY KEY,
     phone VARCHAR(20) NOT NULL,
     money VARCHAR(20) NOT NULL,
-    charge_at TIMESTAMP
+    charge_at BIGINT
 );
 CREATE INDEX idx_consumer_charge_phone ON consumer_charge(phone);
 
@@ -23,7 +23,7 @@ DROP TABLE consumer_play IF EXISTS;
 CREATE TABLE consumer_play (
     id INT AUTO_INCREMENT PRIMARY KEY,
     phone VARCHAR(20) NOT NULL,
-    consume_at TIMESTAMP,
+    consume_at BIGINT,
     item_name VARCHAR(20)
 );
 CREATE INDEX idx_consumer_play_phone ON consumer_play(phone);
@@ -33,7 +33,7 @@ DROP TABLE history_play IF EXISTS;
 CREATE TABLE history_play (
     id INT AUTO_INCREMENT PRIMARY KEY,
     phone VARCHAR(20) NOT NULL,
-    consume_at TIMESTAMP,
+    consume_at BIGINT,
     item_name VARCHAR(20)
 );
 CREATE INDEX idx_history_play_phone ON history_play(phone);
