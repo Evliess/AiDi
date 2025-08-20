@@ -6,11 +6,18 @@ springdoc:
 #    title: AiDi
 #    version: 1.0.0
 
+spring.datasource.url: ${DB_URL}
+spring.datasource.driverClassName: org.h2.Driver
+spring.datasource.username: ${DB_USER}
+spring.datasource.password: ${DB_ACCESS_KEY}
+spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+
 play-items:
   items:
     item1: "手工 39.9"
     item2: "弹珠机 49.9"
     item3: "挖机寻 59.9"
+    item4: "畅玩 39.9"
 
 
 
