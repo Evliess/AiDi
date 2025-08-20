@@ -8,7 +8,7 @@ public class HistoryPlay {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String phone;
+    private String money;
     private String item_name;
     @Column(name = "consume_at")
     private Long consumeAt;
@@ -21,12 +21,12 @@ public class HistoryPlay {
         this.id = id;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getMoney() {
+        return money;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setMoney(String money) {
+        this.money = money;
     }
 
     public String getItem_name() {

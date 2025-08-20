@@ -16,6 +16,11 @@ public interface ConsumerRepo extends JpaRepository<Consumer, Long> {
     @Modifying
     @Query("UPDATE Consumer a set a.leftCount = :leftCount WHERE a.phone = :phone")
     @Transactional
-    void updateByName(String phone, Integer leftCount);
+    void updateLeftCountByPhone(String phone, Integer leftCount);
+
+    @Modifying
+    @Query("UPDATE Consumer a set a.name = :name WHERE a.phone = :phone")
+    @Transactional
+    void updateNameByPhone(String phone, String name);
 
 }

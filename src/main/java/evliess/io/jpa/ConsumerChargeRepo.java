@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ConsumerChargeRepo extends JpaRepository<ConsumerCharge, Long> {
+
 }
