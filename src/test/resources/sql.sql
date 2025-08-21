@@ -28,6 +28,16 @@ CREATE TABLE consumer_play (
 );
 CREATE INDEX idx_consumer_play_phone ON consumer_play(phone);
 
+-- 创建 consumer_play 表
+DROP TABLE consumer_score IF EXISTS;
+CREATE TABLE consumer_score (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    phone VARCHAR(20) NOT NULL,
+    consume_at BIGINT,
+    score VARCHAR(10)
+);
+CREATE INDEX idx_consumer_score_phone ON consumer_score(phone);
+
 -- 创建 history_play 表
 DROP TABLE history_play IF EXISTS;
 CREATE TABLE history_play (

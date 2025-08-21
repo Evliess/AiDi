@@ -1,0 +1,21 @@
+package evliess.io.utils;
+
+import evliess.io.constant.ServiceConstants;
+
+public class ValidationUtils {
+    public static boolean isNotValidPhone(String phone) {
+        return !isValidPhone(phone);
+    }
+
+    public static boolean isValidPhone(String phone) {
+        return phone != null && !phone.isEmpty() && phone.matches(ServiceConstants.PHONE_PATTERN);
+    }
+
+    public static boolean isNotBlank(String str) {
+        return str != null && !str.isEmpty();
+    }
+
+    public static boolean isBlank(String str) {
+        return !isNotBlank(str);
+    }
+}
