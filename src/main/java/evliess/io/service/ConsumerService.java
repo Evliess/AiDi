@@ -3,7 +3,10 @@ package evliess.io.service;
 import com.alibaba.fastjson2.JSONObject;
 import evliess.io.constant.ServiceConstants;
 import evliess.io.entity.Consumer;
+import evliess.io.entity.ConsumerScore;
 import evliess.io.jpa.ConsumerRepo;
+import evliess.io.jpa.ConsumerScoreRepo;
+import evliess.io.utils.ValidationUtils;
 import jakarta.transaction.Transactional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -12,9 +15,11 @@ import org.springframework.stereotype.Service;
 public class ConsumerService {
     public static final String CONSUMER_NOT_EXIST = "会员不存在！";
     private final ConsumerRepo consumerRepo;
+    private final ConsumerScoreRepo consumerScoreRepo;
 
-    public ConsumerService(ConsumerRepo consumerRepo) {
+    public ConsumerService(ConsumerRepo consumerRepo, ConsumerScoreRepo consumerScoreRepo) {
         this.consumerRepo = consumerRepo;
+        this.consumerScoreRepo = consumerScoreRepo;
     }
 
     @Transactional
@@ -71,6 +76,12 @@ public class ConsumerService {
             jsonObject.put("phone", consumer.getPhone());
             jsonObject.put("name", consumer.getName());
             jsonObject.put("leftCount", consumer.getLeftCount());
+            ConsumerScore consumerScore = consumerScoreRepo.findByPhone(phone);
+            String score = consumerScore.getScore();
+            if (ValidationUtils.isBlank(score)) {
+                score = ServiceConstants.NA;
+            }
+            jsonObject.put("score", score);
             jsonObject.put(ServiceConstants.STATUS, ServiceConstants.OK);
         }
         return ResponseEntity.ok(jsonObject.toString());

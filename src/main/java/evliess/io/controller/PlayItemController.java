@@ -48,7 +48,7 @@ public class PlayItemController {
     @Parameters({
             @Parameter(name = "name", description = "项目名字", example = "寻宝"),
             @Parameter(name = "money", description = "收费", example = "39.9")})
-    @PutMapping("/play-items/{name}/{money}")
+    @PutMapping("/play-item/{name}/{money}")
     public ResponseEntity<String> update(@PathVariable("name") String name,
                                          @PathVariable("money") String money) {
         if (ValidationUtils.isBlank(name) || ValidationUtils.isNotBlank(money))
@@ -60,7 +60,7 @@ public class PlayItemController {
     @Parameters({
             @Parameter(name = "name", description = "项目名字", example = "寻宝"),
             })
-    @GetMapping("/play-items/{name}")
+    @GetMapping("/play-item/{name}")
     public ResponseEntity<String> findByName(@PathVariable("name") String name) {
         if (ValidationUtils.isBlank(name))
             throw new IllegalArgumentException("参数错误");
@@ -71,7 +71,7 @@ public class PlayItemController {
     @Parameters({
             @Parameter(name = "name", description = "项目名字", example = "寻宝"),
     })
-    @DeleteMapping("/play-items/{name}")
+    @DeleteMapping("/play-item/{name}")
     public ResponseEntity<String> deleteByName(@PathVariable("name") String name) {
         if (ValidationUtils.isBlank(name))
             throw new IllegalArgumentException("参数错误");
