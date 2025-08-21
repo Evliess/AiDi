@@ -4,6 +4,7 @@ import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import evliess.io.constant.ServiceConstants;
 import evliess.io.service.ConsumerChargeService;
+import evliess.io.utils.ValidationUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
@@ -36,7 +37,7 @@ public class ConsumerChargeController {
         JSONObject jsonNode = JSON.parseObject(body);
         String phone = jsonNode.getString("phone");
         String money = jsonNode.getString("money");
-        if (phone == null || phone.isEmpty() || money == null || money.isEmpty()) {
+        if (ValidationUtils.isNotValidPhone(phone) || ValidationUtils.isBlank(money)) {
             throw new IllegalArgumentException(ServiceConstants.ILLEGAL_ARGS_MSG);
         }
         return consumerChargeService.create(body);
@@ -48,7 +49,8 @@ public class ConsumerChargeController {
     })
     @GetMapping("/consumer-charge/{phone}")
     public ResponseEntity<String> findByPhone(@PathVariable("phone") String phone) {
-        if (phone == null || phone.isEmpty()) throw new IllegalArgumentException(ServiceConstants.ILLEGAL_ARGS_MSG);
+        if (ValidationUtils.isNotValidPhone(phone))
+            throw new IllegalArgumentException(ServiceConstants.ILLEGAL_ARGS_MSG);
         return consumerChargeService.findByPhone(phone);
     }
 

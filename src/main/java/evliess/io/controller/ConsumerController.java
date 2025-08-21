@@ -3,6 +3,7 @@ package evliess.io.controller;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import evliess.io.service.ConsumerService;
+import evliess.io.utils.ValidationUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
@@ -34,6 +35,7 @@ public class ConsumerController {
     public ResponseEntity<String> create(@RequestBody String body) {
         JSONObject jsonNode = JSON.parseObject(body);
         String phone = jsonNode.getString("phone");
+        if (ValidationUtils.isNotValidPhone(phone)) throw new IllegalArgumentException(ILLEGAL_ARGS_MSG);
         String name = jsonNode.getString("name");
         return consumerService.create(phone, name);
     }
@@ -44,7 +46,7 @@ public class ConsumerController {
     })
     @GetMapping("/consumer/{phone}")
     public ResponseEntity<String> findByPhone(@PathVariable("phone") String phone) {
-        if (phone == null || phone.isEmpty()) throw new IllegalArgumentException(ILLEGAL_ARGS_MSG);
+        if (ValidationUtils.isNotValidPhone(phone)) throw new IllegalArgumentException(ILLEGAL_ARGS_MSG);
         return consumerService.findByPhone(phone);
     }
 
@@ -55,7 +57,7 @@ public class ConsumerController {
     })
     @PutMapping("/consumer/{phone}/{name}")
     public ResponseEntity<String> updateNameByPhone(@PathVariable("phone") String phone, @PathVariable("name") String name) {
-        if (phone == null || phone.isEmpty()) throw new IllegalArgumentException(ILLEGAL_ARGS_MSG);
+        if (ValidationUtils.isNotValidPhone(phone)) throw new IllegalArgumentException(ILLEGAL_ARGS_MSG);
         return consumerService.updateNameByPhone(phone, name);
     }
 
@@ -66,7 +68,7 @@ public class ConsumerController {
     })
     @PutMapping("/consumer/left-count/{phone}/{leftCount}")
     public ResponseEntity<String> updateLeftCountByPhone(@PathVariable("phone") String phone, @PathVariable("leftCount") String leftCount) {
-        if (phone == null || phone.isEmpty()) throw new IllegalArgumentException(ILLEGAL_ARGS_MSG);
+        if (ValidationUtils.isNotValidPhone(phone)) throw new IllegalArgumentException(ILLEGAL_ARGS_MSG);
         return consumerService.updateLeftCountByPhone(phone, leftCount);
     }
 }

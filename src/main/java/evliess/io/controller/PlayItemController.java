@@ -3,6 +3,7 @@ package evliess.io.controller;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import evliess.io.service.PlayItemService;
+import evliess.io.utils.ValidationUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
@@ -50,7 +51,7 @@ public class PlayItemController {
     @PutMapping("/play-items/{name}/{money}")
     public ResponseEntity<String> update(@PathVariable("name") String name,
                                          @PathVariable("money") String money) {
-        if (name == null || name.isEmpty() || money == null || money.isEmpty())
+        if (ValidationUtils.isBlank(name) || ValidationUtils.isNotBlank(money))
             throw new IllegalArgumentException("参数错误");
         return playItemService.updateByName(name, money);
     }
@@ -61,7 +62,7 @@ public class PlayItemController {
             })
     @GetMapping("/play-items/{name}")
     public ResponseEntity<String> findByName(@PathVariable("name") String name) {
-        if (name == null || name.isEmpty())
+        if (ValidationUtils.isBlank(name))
             throw new IllegalArgumentException("参数错误");
         return playItemService.findByName(name);
     }
@@ -72,7 +73,7 @@ public class PlayItemController {
     })
     @DeleteMapping("/play-items/{name}")
     public ResponseEntity<String> deleteByName(@PathVariable("name") String name) {
-        if (name == null || name.isEmpty())
+        if (ValidationUtils.isBlank(name))
             throw new IllegalArgumentException("参数错误");
         return playItemService.deleteByName(name);
     }
