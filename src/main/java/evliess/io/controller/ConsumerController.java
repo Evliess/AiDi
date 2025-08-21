@@ -35,7 +35,7 @@ public class ConsumerController {
         JSONObject jsonNode = JSON.parseObject(body);
         String phone = jsonNode.getString("phone");
         String name = jsonNode.getString("name");
-        return consumerService.save(phone, name);
+        return consumerService.create(phone, name);
     }
 
     @Operation(summary = "根据手机号查找会员")

@@ -18,7 +18,7 @@ public class ConsumerService {
     }
 
     @Transactional
-    public ResponseEntity<String> save(String phone, String name) {
+    public ResponseEntity<String> create(String phone, String name) {
         Consumer consumer = consumerRepo.findByPhone(phone);
         JSONObject jsonObject = new JSONObject();
         if (consumer == null) {
