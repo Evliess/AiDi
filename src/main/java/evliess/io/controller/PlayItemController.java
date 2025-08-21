@@ -7,12 +7,14 @@ import evliess.io.service.PlayItemService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/public/v1")
+@Tag(name = "增值项目管理", description = "增值项目管理的操作接口")
 public class PlayItemController {
 
     private final PlayItemService playItemService;

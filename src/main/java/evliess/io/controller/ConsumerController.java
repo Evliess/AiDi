@@ -6,12 +6,14 @@ import evliess.io.service.ConsumerService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/public/v1")
+@Tag(name = "会员管理", description = "会员管理的操作接口")
 public class ConsumerController {
     public static final String ILLEGAL_ARGS_MSG = "参数错误！";
     private final ConsumerService consumerService;

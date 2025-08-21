@@ -3,7 +3,7 @@ package evliess.io.controller;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import evliess.io.constant.ServiceConstants;
-import evliess.io.service.ConsumerChargeService;
+import evliess.io.service.ConsumerPlayService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
@@ -14,42 +14,42 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/public/v1")
-@Tag(name = "会员充值", description = "会员充值的操作接口")
-public class ConsumerChargeController {
+@Tag(name = "会员划卡", description = "会员划卡的操作接口")
+public class ConsumerPlayController {
 
-    private final ConsumerChargeService consumerChargeService;
+    private final ConsumerPlayService consumerPlayService;
 
     @Autowired
-    public ConsumerChargeController(ConsumerChargeService consumerChargeService) {
-        this.consumerChargeService = consumerChargeService;
+    public ConsumerPlayController(ConsumerPlayService consumerPlayService) {
+        this.consumerPlayService = consumerPlayService;
     }
 
-    @Operation(summary = "新增一条充值记录")
+    @Operation(summary = "新增一条划卡记录")
     @Parameters({
             @Parameter(name = "body",
                     description = "{<br>" +
-                            "money: 198,<br>" +
+                            "item: 寻宝,<br>" +
                             "phone: 15611112222<br>}")
     })
-    @PostMapping("/consumers-charge")
+    @PostMapping("/consumers-play")
     public ResponseEntity<String> create(@RequestBody String body) {
         JSONObject jsonNode = JSON.parseObject(body);
         String phone = jsonNode.getString("phone");
-        String money = jsonNode.getString("money");
-        if (phone == null || phone.isEmpty() || money == null || money.isEmpty()) {
+        String item = jsonNode.getString("item");
+        if (phone == null || phone.isEmpty() || item == null || item.isEmpty()) {
             throw new IllegalArgumentException(ServiceConstants.ILLEGAL_ARGS_MSG);
         }
-        return consumerChargeService.create(body);
+        return consumerPlayService.create(body);
     }
 
-    @Operation(summary = "根据手机号查找会员充值记录")
+    @Operation(summary = "根据手机号查找会员划卡记录")
     @Parameters({
             @Parameter(name = "phone", description = "手机号", example = "15611112222"),
     })
-    @GetMapping("/consumer-charge/{phone}")
+    @GetMapping("/consumer-play/{phone}")
     public ResponseEntity<String> findByPhone(@PathVariable("phone") String phone) {
         if (phone == null || phone.isEmpty()) throw new IllegalArgumentException(ServiceConstants.ILLEGAL_ARGS_MSG);
-        return consumerChargeService.findByPhone(phone);
+        return consumerPlayService.findByPhone(phone);
     }
 
 }

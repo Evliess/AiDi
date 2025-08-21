@@ -9,7 +9,8 @@ public class ConsumerPlay {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String phone;
-    private String item_name;
+    @Column(name = "item_name")
+    private String itemName;
     @Column(name = "consume_at")
     private Long consumeAt;
 
@@ -29,12 +30,12 @@ public class ConsumerPlay {
         this.phone = phone;
     }
 
-    public String getItem_name() {
-        return item_name;
+    public String getItemName() {
+        return itemName;
     }
 
-    public void setItem_name(String item_name) {
-        this.item_name = item_name;
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 
     public Long getConsumeAt() {
