@@ -75,7 +75,7 @@
                             <finalName>app</finalName>
                             <attach>false</attach>
                             <executable>true</executable>
-                            <mainClass>evliess.io.App</mainClass>
+                            <mainClass>evl.io.App</mainClass>
                         </configuration>
                     </execution>
                 </executions>
