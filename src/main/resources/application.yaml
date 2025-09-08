@@ -4,7 +4,7 @@ springdoc:
 #  swagger-ui:  ##配置后返回404
 #    path: /swagger-ui.html
 #    title: AiDi
-#    version: 1.0.0
+#    version: 1.0.0 #
 
 spring.datasource.url: ${DB_URL}
 spring.datasource.driverClassName: org.h2.Driver
