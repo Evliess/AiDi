@@ -1,0 +1,25 @@
+<!--home.wxml-->
+
+<scroll-view class="container" style="padding: {{safeTop}}px 4px;" scroll-y type="custom">
+  <view class="title">
+    <view>AIDI 后台管理</view>
+  </view>
+
+  <view class="variations">
+    <view class="variation-card">
+      <view class="text">新增会员</view>
+    </view>
+    <view class="variation-card">
+      <view class="text">会员充值</view>
+    </view>
+    <view class="variation-card">
+      <view class="text">会员划卡</view>
+    </view>
+    <view class="variation-card">
+      <view class="text">散客消费</view>
+    </view>
+    <view class="variation-card">
+      <view class="text">财务一览</view>
+    </view>
+  </view>
+</scroll-view>

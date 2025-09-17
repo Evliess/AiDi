@@ -1,0 +1,28 @@
+<!--pages/non-vip/non-vip.wxml-->
+<scroll-view class="container" style="padding: {{safeTop}}px 4px;" scroll-y type="custom">
+  <view class="title">
+    <view>AIDI 散客消费</view>
+  </view>
+  <view class="card">
+    <view class="card-header">
+      <p class="card-title">散客消费</p>
+    </view>
+    <view class="form-group">
+      <label class="form-label" for="name">消费金额</label>
+      <input type="digit" id="name" class="form-input" placeholder="请输入消费金额"></input>
+    </view>
+    <view class="form-group">
+      <label class="form-label" for="name">备注</label>
+      <textarea type="text" class="form-textarea" placeholder="请输入备注"></textarea>
+    </view>
+    <view class="form-group">
+      <switch type="checkbox" id="agree"></switch>
+      <label for="agree" class="checkbox-label">我同意相关条款和隐私政策</label>
+    </view>
+    <view class="card-buttons">
+      <button class="btn btn-primary">确认</button>
+      <button class="btn btn-outline">重置</button>
+    </view>
+  </view>
+
+</scroll-view>
