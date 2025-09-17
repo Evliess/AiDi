@@ -1,0 +1,22 @@
+{
+  "description": "DESC",
+  "projectname": "mini",
+  "setting": {
+    "compileHotReLoad": true,
+    "urlCheck": false
+  },
+  "libVersion": "3.10.0",
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/add-vip/add-vip",
+          "pathName": "pages/add-vip/add-vip",
+          "query": "",
+          "scene": null,
+          "launchMode": "default"
+        }
+      ]
+    }
+  }
+}
