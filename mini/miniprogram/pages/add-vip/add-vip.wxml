@@ -1,5 +1,6 @@
 <!--pages/add-vip/add-vip.wxml-->
-<scroll-view class="container" style="padding: {{safeTop}}px 4px;" scroll-y type="custom">
+<navigation-bar></navigation-bar>
+<scroll-view class="container" style="padding: 0 4px;" scroll-y type="custom">
   <view class="title">
     <view>AIDI 新增会员</view>
   </view>

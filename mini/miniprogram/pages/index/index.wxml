@@ -1,6 +1,6 @@
 <!--index.wxml-->
-
-<scroll-view class="container" style="padding: {{safeTop}}px 4px;" scroll-y type="custom">
+<navigation-bar></navigation-bar>
+<scroll-view class="container" style="padding: 0 4px;" scroll-y type="custom">
   <view class="title">
     <view>毛玻璃风格卡片</view>
   </view>
@@ -45,5 +45,4 @@
       </label>
     </radio-group>
   </view>
-
 </scroll-view>

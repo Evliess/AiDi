@@ -1,5 +1,5 @@
 // pages/add-vip/add-vip.ts
-const app = getApp()
+let app = getApp()
 Page({
   data: {
     safeTop: 0,

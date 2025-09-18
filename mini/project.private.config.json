@@ -10,8 +10,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/stick-demo/stick-demo",
-          "pathName": "pages/stick-demo/stick-demo",
+          "name": "pages/home/home",
+          "pathName": "pages/home/home",
           "query": "",
           "scene": null,
           "launchMode": "default"

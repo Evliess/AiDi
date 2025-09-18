@@ -1,0 +1,68 @@
+.nav-bar {
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  background: #00bfff;
+  z-index: 999;
+}
+
+.nav-bar .search {
+  display: flex;
+  align-items: center;
+  background: #eeeeee;
+  position: absolute;
+  border-radius: 50px;
+  padding-left: 14px;
+}
+
+navigator {
+  display: flex;
+  align-items: center;
+}
+
+.icon-img {
+  height: 24px;
+  width: 24px;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  filter: none !important;
+}
+
+.icon-img-right {
+  margin-left: 20px;
+  height: 24px;
+  width: 24px;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  filter: none !important;
+}
+
+.back-btn {
+  /* 移除默认的背景色和边框 */
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: inline-flex; /* 保持内部布局 */
+  align-items: center;
+  justify-content: center;
+}
+
+/* 移除 navigator 组件的默认点击高亮效果 */
+.back-btn::after {
+  display: none !important; /* 移除默认的点击边框/阴影 */
+}
+
+/* 移除点击时的背景色变化 */
+.back-btn:hover,
+.back-btn:active {
+  background-color: transparent !important;
+  opacity: 1 !important; /* 保持不透明度不变 */
+}
+
+
+/* 移除 navigator 的默认样式 */
+.back-btn {
+  -webkit-tap-highlight-color: transparent; /* 移除移动端点击高亮 */
+  border-radius: 0; /* 移除圆角 */
+}
