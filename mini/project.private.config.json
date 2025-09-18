@@ -10,11 +10,18 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/add-vip/add-vip",
-          "pathName": "pages/add-vip/add-vip",
+          "name": "pages/stick-demo/stick-demo",
+          "pathName": "pages/stick-demo/stick-demo",
           "query": "",
           "scene": null,
           "launchMode": "default"
+        },
+        {
+          "name": "pages/add-vip/add-vip",
+          "pathName": "pages/add-vip/add-vip",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

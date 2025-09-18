@@ -28,7 +28,7 @@
     </view>
   </view>
 
-  <block wx:for="{{mems}}">
+  <block wx:for="{{mems}}" wx:key="id">
     <view class="list-item">{{item.name}}</view>
   </block>
 
