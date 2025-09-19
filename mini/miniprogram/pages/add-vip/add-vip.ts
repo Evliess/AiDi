@@ -1,5 +1,7 @@
 // pages/add-vip/add-vip.ts
-import { app } from '../../app'; 
+import { app } from '../../app';
+import { openId, token, addVip, addCharge, updateByPhone } from '../../utils/util'
+
 Page({
   data: {
     safeTop: 0,
@@ -14,22 +16,75 @@ Page({
       name: "",
       phone: "",
       money: "",
-      type: "",
-      round: "",
+      leftCount: "",
+      expiredAt: "",
     }
   },
-  onRadioChange: function(e: any) {
+  onRadioChange: function (e: any) {
     const selectedValue = e.detail.value;
-    this.setData({
-      selectedValue: selectedValue
-    });
-    console.log('选中的值变为:', selectedValue);
+    if (selectedValue == 'day') {
+      this.setData({ selectedValue: selectedValue, "user.expiredAt": "" });
+    } else {
+      this.setData({ selectedValue: selectedValue, "user.leftCount": "" });
+    }
   },
-  onLoad: function() {
+  onLoad: function () {
     const safeTop = app.globalData.safeTop;
     this.setData({
       safeTop: safeTop,
       selectedValue: this.data.items[0].value
     });
+  },
+  onNameChange: function (e: any) {
+    const value = e.detail.value;
+    if (value !== null && value.length > 0) this.setData({ "user.name": value, });
+  },
+  onPhoneChange: function (e: any) {
+    const value = e.detail.value;
+    if (value !== null && value.length > 0) this.setData({ "user.phone": value, });
+  },
+  onMoneyChange: function (e: any) {
+    const value = e.detail.value;
+    if (value !== null && value.length > 0) this.setData({ "user.money": value, });
+  },
+  onLeftCountChange: function (e: any) {
+    const value = e.detail.value;
+    if (value !== null && value.length > 0) this.setData({ "user.leftCount": value, });
+  },
+  onExpiredAtChange: function (e: any) {
+    const value = e.detail.value;
+    if (value !== null && value.length > 0) this.setData({ "user.expiredAt": value, })
+  },
+
+  async confirm() {
+    try {
+      const data:any = {};
+      data.phone = this.data.user.phone;
+      if(!data.phone) {
+        wx.showToast({ title: '请检查手机号!', duration: 1000, icon: 'error' });
+        return;
+      }
+      data.money = this.data.user.money;
+      if(!data.money) {
+        wx.showToast({ title: '请检查金额!', duration: 1000, icon: 'error' });
+        return;
+      }
+      data.name = this.data.user.name;
+      data.type = this.data.selectedValue;
+      data.leftCount = this.data.user.leftCount;
+      data.expiredAt = this.data.user.expiredAt;
+      const resAddVip = await addVip("/consumers", openId, token, data);
+      if (resAddVip.status != "ok") {
+        wx.showToast({ title: '请检查手机号!', duration: 1000, icon: 'error' });
+        return;
+      }
+      wx.showToast({ title: '添加成功!', duration: 1000, icon: 'success' });
+    } catch (e) {
+      wx.showToast({ title: '请检查手机号!', duration: 1000, icon: 'error' });
+      return;
+    }
+  },
+  reset: function () { 
+    this.setData({ "user.name": "", "user.phone": "", "user.money": "", "user.leftCount": "", "user.expiredAt": "", selectedValue: this.data.items[0].value});
   },
 })

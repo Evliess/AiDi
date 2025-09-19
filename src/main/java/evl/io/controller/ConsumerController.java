@@ -29,6 +29,10 @@ public class ConsumerController {
             @Parameter(name = "body",
                     description = "{<br>" +
                             "name: 小飞,<br>" +
+                            "money: 998,<br>" +
+                            "type: day,<br>" +
+                            "leftCount: 10,<br>" +
+                            "expiredAt: 2021/01/11,<br>" +
                             "phone: 15611112222<br>}")
     })
     @PostMapping("/consumers")
@@ -37,7 +41,12 @@ public class ConsumerController {
         String phone = jsonNode.getString("phone");
         if (ValidationUtils.isNotValidPhone(phone)) throw new IllegalArgumentException(ILLEGAL_ARGS_MSG);
         String name = jsonNode.getString("name");
-        return consumerService.create(phone, name);
+        String money = jsonNode.getString("money");
+        if (ValidationUtils.isBlank(money)) throw new IllegalArgumentException(ILLEGAL_ARGS_MSG);
+        String type = jsonNode.getString("type");
+        String leftCount = jsonNode.getString("leftCount");
+        String expiredAt = jsonNode.getString("expiredAt");
+        return consumerService.create(phone, name, money, type, leftCount, expiredAt);
     }
 
     @Operation(summary = "根据手机号查找会员")
