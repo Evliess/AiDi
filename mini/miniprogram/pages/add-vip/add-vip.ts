@@ -1,6 +1,6 @@
 // pages/add-vip/add-vip.ts
 import { app } from '../../app';
-import { openId, token, addVip, addCharge, updateByPhone } from '../../utils/util'
+import { openId, token, addVip } from '../../utils/util'
 
 Page({
   data: {
