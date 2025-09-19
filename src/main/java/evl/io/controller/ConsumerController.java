@@ -71,4 +71,23 @@ public class ConsumerController {
         if (ValidationUtils.isNotValidPhone(phone)) throw new IllegalArgumentException(ILLEGAL_ARGS_MSG);
         return consumerService.updateLeftCountByPhone(phone, leftCount);
     }
+
+    @Operation(summary = "根据手机号修改会员信息")
+    @Parameters({
+            @Parameter(name = "phone", description = "手机号", example = "15611112222"),
+            @Parameter(name = "body",
+                    description = "{<br>" +
+                            "type: days,<br>" +
+                            "leftCount: 10,<br>" +
+                            "expiredAt: 2000/01/19<br>}")
+    })
+    @PutMapping("/consumer/{phone}/")
+    public ResponseEntity<String> updateByPhone(@PathVariable("phone") String phone, @RequestBody String body) {
+        if (ValidationUtils.isNotValidPhone(phone)) throw new IllegalArgumentException(ILLEGAL_ARGS_MSG);
+        JSONObject jsonNode = JSON.parseObject(body);
+        String type = jsonNode.getString("type");
+        String leftCount = jsonNode.getString("leftCount");
+        String expiredAt = jsonNode.getString("expiredAt");
+        return consumerService.updateByPhone(phone, leftCount, type, expiredAt);
+    }
 }

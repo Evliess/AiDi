@@ -25,7 +25,7 @@ public class ConsumerChargeController {
         this.consumerChargeService = consumerChargeService;
     }
 
-    @Operation(summary = "新增一条充值记录")
+    @Operation(summary = "新增一条充值记录, 充值金额负值(-198)表示取消充值")
     @Parameters({
             @Parameter(name = "body",
                     description = "{<br>" +

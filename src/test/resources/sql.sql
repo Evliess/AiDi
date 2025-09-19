@@ -4,7 +4,9 @@ CREATE TABLE consumer (
     id INT AUTO_INCREMENT PRIMARY KEY,
     phone VARCHAR(20) NOT NULL,
     name VARCHAR(50),
-    left_count INT DEFAULT 0
+    left_count INT DEFAULT 0,
+    type VARCHAR(20),
+    expired_at VARCHAR(20)
 );
 CREATE INDEX idx_consumer_phone ON consumer(phone);
 

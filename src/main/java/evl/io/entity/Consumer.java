@@ -12,6 +12,8 @@ public class Consumer {
     private String name;
     @Column(name = "left_count")
     private Integer leftCount;
+    private String type;
+    private String expiredAt;
 
     public Long getId() {
         return id;
@@ -43,5 +45,21 @@ public class Consumer {
 
     public void setLeftCount(Integer leftCount) {
         this.leftCount = leftCount;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getExpiredAt() {
+        return expiredAt;
+    }
+
+    public void setExpiredAt(String expiredAt) {
+        this.expiredAt = expiredAt;
     }
 }
