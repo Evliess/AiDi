@@ -1,0 +1,40 @@
+<!--pages/add-vip/add-vip.wxml-->
+<navigation-bar></navigation-bar>
+<scroll-view class="container" style="padding: 0 4px;" scroll-y type="custom">
+  <view class="title">
+    <view>AIDI 会员划卡</view>
+  </view>
+
+  <view class="card">
+    <view class="card-header">
+      <p class="card-title">会员划卡</p>
+    </view>
+    <view class="form-group">
+      <label class="form-label" for="phone">手机号</label>
+      <input type="text" class="form-input" placeholder="请输入手机号"></input>
+    </view>
+    <view class="form-group">
+      <label class="form-label">会员名字</label>
+      <label class="form-label">剩余次数</label>
+    </view>
+    <view class="card-buttons">
+      <button class="btn btn-primary">查找</button>
+      <button class="btn btn-outline">重置</button>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="card-header">
+      <p class="card-title">划卡</p>
+    </view>
+    <view class="form-group">
+      <label class="form-label" for="money">剩余次数</label>
+      <input type="text" class="form-input" placeholder="请设置剩余次数"></input>
+    </view>
+    <view class="card-buttons">
+      <button class="btn btn-primary">确认</button>
+      <button class="btn btn-outline">重置</button>
+    </view>
+  </view>
+
+</scroll-view>

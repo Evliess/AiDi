@@ -8,10 +8,10 @@
     <view class="variation-card" bind:tap="addVip">
       <view class="text">新增会员</view>
     </view>
-    <view class="variation-card">
+    <view class="variation-card" bind:tap="chargeVip">
       <view class="text">会员充值</view>
     </view>
-    <view class="variation-card">
+    <view class="variation-card" bind:tap="playVip">
       <view class="text">会员划卡</view>
     </view>
     <view class="variation-card" bind:tap="addNonVip">

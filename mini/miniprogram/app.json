@@ -3,7 +3,9 @@
     "pages/index/index",
     "pages/home/home",
     "pages/non-vip/non-vip",
-    "pages/add-vip/add-vip"
+    "pages/add-vip/add-vip",
+    "pages/charge-vip/charge-vip",
+    "pages/play-vip/play-vip"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -14,7 +16,6 @@
     "skyline": {
       "defaultDisplayBlock": true,
       "defaultContentBox": true,
-      "tagNameStyleIsolation": "legacy",
       "disableABTest": true,
       "sdkVersionBegin": "3.0.0",
       "sdkVersionEnd": "15.255.255"

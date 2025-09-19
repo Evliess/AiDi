@@ -26,6 +26,10 @@
     <view class="variation-card">
       <view class="text">系统设置</view>
     </view>
+    <view class="form-group">
+      <switch type="checkbox" id="agree"></switch>
+      <label for="agree" class="checkbox-label">我同意相关条款和隐私政策</label>
+    </view>
   </view>
 
   <block wx:for="{{mems}}" wx:key="id">

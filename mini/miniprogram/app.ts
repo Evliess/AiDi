@@ -16,20 +16,17 @@ App({
     wx.setStorageSync('logs', logs)
 
     const rect = wx.getMenuButtonBoundingClientRect();
-    const deviceInfo = wx.getWindowInfo();
-    this.globalData.safeTop = rect.height + deviceInfo.safeArea.top;
-
-    const systemInfo = wx.getSystemInfoSync();
+    const winInfo = wx.getWindowInfo();
+    this.globalData.safeTop = rect.height + winInfo.safeArea.top;
     // 胶囊按钮位置信息
     const menuButtonInfo = wx.getMenuButtonBoundingClientRect();
     console.log(menuButtonInfo)
     // 导航栏高度 = 状态栏高度 + 44
-    this.globalData.navBarHeight = systemInfo.statusBarHeight + 44;
-    this.globalData.menuRight = systemInfo.screenWidth - menuButtonInfo.right;
+    this.globalData.navBarHeight = winInfo.statusBarHeight + 44;
+    this.globalData.menuRight = winInfo.screenWidth - menuButtonInfo.right;
     this.globalData.menuTop = menuButtonInfo.top;
     this.globalData.menuHeight = menuButtonInfo.height;
     this.globalData.menuWidth = menuButtonInfo.width;
-
     // 登录
     wx.login({
       success: res => {
@@ -39,3 +36,5 @@ App({
     })
   },
 })
+
+export const app = getApp();
