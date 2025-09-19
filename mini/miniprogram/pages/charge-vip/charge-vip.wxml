@@ -44,6 +44,10 @@
       <label class="form-label" for="round">剩余次数</label>
       <input type="number" class="form-input" placeholder="请输入剩余次数"></input>
     </view>
+    <view wx:if="{{selectedValue!='day'}}" class="form-group">
+      <label class="form-label" for="round">有效日期</label>
+      <input type="text" class="form-input" placeholder="请输入有效日期"></input>
+    </view>
     <view class="card-buttons">
       <button class="btn btn-primary">确认</button>
       <button class="btn btn-outline">重置</button>

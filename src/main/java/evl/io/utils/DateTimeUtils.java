@@ -34,4 +34,23 @@ public class DateTimeUtils {
             throw new IllegalArgumentException("日期格式解析错误: " + dateString, e);
         }
     }
+
+    public static String nowPlusDays(int days) {
+        LocalDate now = LocalDate.now();
+        LocalDate oneMonthLater = now.plusDays(days);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        return oneMonthLater.format(formatter);
+    }
+
+    public static String nowPlus1Month() {
+        return nowPlusDays(31);
+    }
+
+    public static String nowPlus1Season() {
+        return nowPlusDays(92);
+    }
+
+    public static String nowPlus1Year() {
+        return nowPlusDays(366);
+    }
 }

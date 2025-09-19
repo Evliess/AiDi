@@ -77,7 +77,7 @@ public class ConsumerController {
             @Parameter(name = "phone", description = "手机号", example = "15611112222"),
             @Parameter(name = "body",
                     description = "{<br>" +
-                            "type: days,<br>" +
+                            "type: day,<br>" +
                             "leftCount: 10,<br>" +
                             "expiredAt: 2000/01/19<br>}")
     })
