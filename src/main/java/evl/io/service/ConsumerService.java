@@ -8,12 +8,14 @@ import evl.io.entity.ConsumerScore;
 import evl.io.jpa.ConsumerChargeRepo;
 import evl.io.jpa.ConsumerRepo;
 import evl.io.jpa.ConsumerScoreRepo;
+import evl.io.utils.DateTimeUtils;
 import evl.io.utils.ValidationUtils;
 import jakarta.transaction.Transactional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.List;
 
 @Service
 public class ConsumerService {
@@ -35,12 +37,9 @@ public class ConsumerService {
         JSONObject jsonObject = new JSONObject();
         if (consumer == null) {
             consumer = new Consumer();
-            consumer.setName(name);
             consumer.setPhone(phone);
-            consumerRepo.save(consumer);
-        } else {
-            consumerRepo.updateNameByPhone(phone, name);
         }
+        consumer.setName(name);
         consumer.setType(type);
         if (ServiceConstants.TYPE_DAY.equals(type)) {
             consumer.setLeftCount(Integer.parseInt(leftCount));
@@ -49,6 +48,7 @@ public class ConsumerService {
             consumer.setExpiredAt(expiredAt);
             consumer.setLeftCount(0);
         }
+        consumerRepo.save(consumer);
         createConsumeCharge(phone, money);
         jsonObject.put(ServiceConstants.STATUS, ServiceConstants.OK);
         return ResponseEntity.ok(jsonObject.toString());
@@ -109,6 +109,12 @@ public class ConsumerService {
                     score = ServiceConstants.NA;
                 }
                 jsonObject.put("score", score);
+            }
+            List<ConsumerCharge> consumerCharges = consumerChargeRepo.findAllByPhone(phone);
+            if (!consumerCharges.isEmpty()) {
+                ConsumerCharge consumerCharge = consumerCharges.get(0);
+                jsonObject.put("money", consumerCharge.getMoney());
+                jsonObject.put("chargeAt", DateTimeUtils.convertToFormattedString(consumerCharge.getChargeAt()));
             }
             jsonObject.put(ServiceConstants.STATUS, ServiceConstants.OK);
         }

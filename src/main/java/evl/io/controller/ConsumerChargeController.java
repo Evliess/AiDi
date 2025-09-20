@@ -4,6 +4,7 @@ import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import evl.io.constant.ServiceConstants;
 import evl.io.service.ConsumerChargeService;
+import evl.io.service.ConsumerService;
 import evl.io.utils.ValidationUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -19,17 +20,23 @@ import org.springframework.web.bind.annotation.*;
 public class ConsumerChargeController {
 
     private final ConsumerChargeService consumerChargeService;
+    private final ConsumerService consumerService;
 
     @Autowired
-    public ConsumerChargeController(ConsumerChargeService consumerChargeService) {
+    public ConsumerChargeController(ConsumerChargeService consumerChargeService,
+                                    ConsumerService consumerService) {
         this.consumerChargeService = consumerChargeService;
+        this.consumerService = consumerService;
     }
 
     @Operation(summary = "新增一条充值记录, 充值金额负值(-198)表示取消充值")
     @Parameters({
             @Parameter(name = "body",
                     description = "{<br>" +
-                            "money: 198,<br>" +
+                            "money: 998,<br>" +
+                            "type: day,<br>" +
+                            "leftCount: 10,<br>" +
+                            "expiredAt: 2021/01/11,<br>" +
                             "phone: 15611112222<br>}")
     })
     @PostMapping("/consumers-charge")

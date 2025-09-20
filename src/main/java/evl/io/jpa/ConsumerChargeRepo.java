@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface ConsumerChargeRepo extends JpaRepository<ConsumerCharge, Long> {
-    @Query("SELECT a from ConsumerCharge a WHERE a.phone= :phone")
+    @Query("SELECT a from ConsumerCharge a WHERE a.phone= :phone ORDER BY a.id DESC")
     List<ConsumerCharge> findAllByPhone(String phone);
 }

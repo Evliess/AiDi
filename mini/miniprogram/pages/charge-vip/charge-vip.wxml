@@ -11,25 +11,32 @@
     </view>
     <view class="form-group">
       <label class="form-label" for="phone">手机号</label>
-      <input type="text" class="form-input" placeholder="请输入手机号"></input>
-    </view>
-    <view class="form-group">
-      <label class="form-label">会员名字</label>
-      <label class="form-label">剩余次数</label>
+      <input type="text" class="form-input" placeholder="请输入手机号" bindinput="onPhoneChange" value="{{user.phone}}"></input>
     </view>
     <view class="card-buttons">
-      <button class="btn btn-primary">查找</button>
-      <button class="btn btn-outline">重置</button>
+      <button class="btn btn-primary" style="visibility: hidden;">重置</button>
+      <button class="btn btn-outline" bind:tap="find">查找</button>
+    </view>
+    <view wx:if="{{user.name}}" class="form-group" style="margin-top: 6px;">
+      <view>
+        <text class="">会员名字: {{user.name}}</text>
+        <text class="text-class">会员类型: <text class="type">{{user.chineseType}}</text></text>
+        <text wx:if="{{user.score}}" class="text-class">会员积分: {{user.score}}</text>
+      </view>
+      <view>
+        <text class="">充值日期: {{user.oldChargeAt}}</text>
+        <text wx:if="{{user.type=='day'}}" class="form-label">剩余次数: {{user.oldLeftCount}}</text>
+        <text wx:if="{{user.type!='day'}}" class="form-label">到期日期: <text class="type">{{user.oldExpiredAt}}</text></text>
+      </view>
     </view>
   </view>
-
   <view class="card">
     <view class="card-header">
       <p class="card-title">充值</p>
     </view>
     <view class="form-group">
       <label class="form-label" for="money">充值金额</label>
-      <input type="digit" class="form-input" placeholder="请输入充值金额"></input>
+      <input type="digit" class="form-input" placeholder="请输入充值金额" bindinput="onMoneyChange" value="{{user.money}}"></input>
     </view>
 
     <view class="form-group">
@@ -42,15 +49,15 @@
     </view>
     <view wx:if="{{selectedValue=='day'}}" class="form-group">
       <label class="form-label" for="round">剩余次数</label>
-      <input type="number" class="form-input" placeholder="请输入剩余次数"></input>
+      <input type="number" class="form-input" placeholder="请输入剩余次数" bindinput="onLeftCountChange" value="{{user.leftCount}}"></input>
     </view>
     <view wx:if="{{selectedValue!='day'}}" class="form-group">
       <label class="form-label" for="round">有效日期</label>
-      <input type="text" class="form-input" placeholder="请输入有效日期"></input>
+      <input type="text" class="form-input" placeholder="请输入有效日期" bindinput="onExpiredAtChange" value="{{user.expiredAt}}"></input>
     </view>
     <view class="card-buttons">
-      <button class="btn btn-primary">确认</button>
-      <button class="btn btn-outline">重置</button>
+      <button class="btn btn-primary" style="visibility: hidden;">重置</button>
+      <button class="btn btn-outline" bind:tap="confirm">确认</button>
     </view>
   </view>
 
