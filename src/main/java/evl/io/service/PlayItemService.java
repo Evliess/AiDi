@@ -1,5 +1,6 @@
 package evl.io.service;
 
+import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import evl.io.component.PlayItemConfig;
 import evl.io.constant.ServiceConstants;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -78,5 +80,19 @@ public class PlayItemService {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put(ServiceConstants.STATUS, ServiceConstants.OK);
         return ResponseEntity.ok(jsonObject.toString());
+    }
+
+    public ResponseEntity<String> findAll() {
+        JSONArray arr = new JSONArray();
+        List<PlayItem> playItemList = playItemRepo.findAll();
+        for (PlayItem playItem : playItemList) {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("name", playItem.getName());
+            jsonObject.put("money", playItem.getMoney());
+            arr.add(jsonObject);
+        }
+        return ResponseEntity.ok(arr.toString());
+
+
     }
 }

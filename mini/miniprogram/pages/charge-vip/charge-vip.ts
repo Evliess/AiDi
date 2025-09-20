@@ -53,13 +53,24 @@ Page({
         wx.showToast({ title: '请检查手机号!', duration: 1000, icon: 'error' });
         return;
       }
-      wx.showToast({ title: '添加成功!', duration: 1000, icon: 'success' });
+      wx.showToast({ title: '充值成功!', duration: 1000, icon: 'success' });
     } catch (e) {
       wx.showToast({ title: '请检查手机号!', duration: 1000, icon: 'error' });
       return;
     }
   },
+  clearData: function () {
+    const userInfo: any = this.data.user;
+    const newUserInfo: any = {};
+    for (let key in userInfo) {
+      if (userInfo.hasOwnProperty(key)) {
+        newUserInfo[key] = "";
+      }
+    }
+    this.setData({userInfo: newUserInfo});
+  },
   async find(){
+    this.clearData();
     try{
       const url = "/consumer/" + this.data.user.phone;
       const findVipByPhoneRes = await findVipByPhone(url, openId, token);
@@ -67,6 +78,7 @@ Page({
       if(findVipByPhoneRes.status=="ng") {
         this.setData({"user.name": null});
         wx.showToast({ title: findVipByPhoneRes.message, duration: 1000, icon: 'error' });
+        return;
       }
       this.setData({"user.name":findVipByPhoneRes.name,
       "user.oldChargeAt": findVipByPhoneRes.chargeAt,

@@ -26,8 +26,7 @@ public class PlayItemController {
 
     @GetMapping("/playitems")
     public ResponseEntity<String> hello() {
-        playItemService.getItems().forEach((k, v) -> System.out.println(k + " : " + v));
-        return ResponseEntity.ok("hello");
+        return playItemService.findAll();
     }
 
     @Operation(summary = "新增一个项目")

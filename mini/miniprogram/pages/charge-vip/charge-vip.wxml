@@ -25,8 +25,8 @@
       </view>
       <view>
         <text class="">充值日期: {{user.oldChargeAt}}</text>
-        <text wx:if="{{user.type=='day'}}" class="form-label">剩余次数: {{user.oldLeftCount}}</text>
-        <text wx:if="{{user.type!='day'}}" class="form-label">到期日期: <text class="type">{{user.oldExpiredAt}}</text></text>
+        <text wx:if="{{user.oldType=='day'}}" class="form-label">剩余次数: {{user.oldLeftCount}}</text>
+        <text wx:if="{{user.oldType!='day'}}" class="form-label">到期日期: <text class="type">{{user.oldExpiredAt}}</text></text>
       </view>
     </view>
   </view>
