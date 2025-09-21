@@ -43,7 +43,7 @@ Page({
       const findVipByPhoneRes = await viewVip(url, this.data.openId, this.data.token);
       console.log(findVipByPhoneRes);
       if(findVipByPhoneRes.status=="ng") {
-        this.setData({"user.name": null});
+        this.setData({"user.name": null, playLists:[], chargeLists:[]});
         wx.showToast({ title: findVipByPhoneRes.message, duration: 1000, icon: 'error' });
         return;
       }
