@@ -38,6 +38,7 @@ public class FinService {
             charge.put("money", consumerCharge.getMoney());
             total = total.add(new BigDecimal(consumerCharge.getMoney()));
             charge.put("name", consumerRepo.findNameByPhone(consumerCharge.getPhone()));
+            charge.put("time", DateTimeUtils.convertToFormattedString(consumerCharge.getChargeAt()));
             chargeList.add(charge);
         }
         jsonObject.put("chargeList", chargeList);
@@ -50,6 +51,7 @@ public class FinService {
             history.put("money", historyPlay.getMoney());
             total = total.add(new BigDecimal(historyPlay.getMoney()));
             history.put("name", historyPlay.getItemName());
+            history.put("time", DateTimeUtils.convertToFormattedString(historyPlay.getConsumeAt()));
             historyList.add(history);
         }
         jsonObject.put("historyList", historyList);

@@ -20,7 +20,7 @@
     <view class="variation-card" bind:tap="addNonVip">
       <view class="text">散客消费</view>
     </view>
-    <view class="variation-card">
+    <view class="variation-card" bind:tap="viewFin">
       <view class="text">财务一览</view>
     </view>
   </view>

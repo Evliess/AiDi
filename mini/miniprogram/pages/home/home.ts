@@ -9,6 +9,7 @@ Page({
   chargeVip: function(){wx.navigateTo({"url": "/pages/charge-vip/charge-vip"});},
   playVip: function(){wx.navigateTo({"url": "/pages/play-vip/play-vip"});},
   viewVip: function() {wx.navigateTo({"url": "/pages/view-vip/view-vip"});},
+  viewFin: function() {wx.navigateTo({"url": "/pages/view-fin/view-fin"});},
   onLoad: function() {
     const safeTop = app.globalData.safeTop;
     this.setData({

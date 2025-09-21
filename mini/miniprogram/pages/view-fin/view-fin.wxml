@@ -1,0 +1,35 @@
+<!--pages/non-vip/non-vip.wxml-->
+<navigation-bar></navigation-bar>
+<scroll-view class="container" style="padding: 4px;" scroll-y type="custom">
+  <view class="title">
+    <view>AIDI 财务一览</view>
+  </view>
+  <view class="card">
+    <view class="card-header">
+      <p class="card-title">财务一览</p>
+    </view>
+    <view class="form-group">
+      <label class="form-label" for="name">开始日期</label>
+      <input type="text" value="{{user.start}}" bindinput="onStartChange" class="form-input" placeholder="开始日期"></input>
+    </view>
+    <view class="form-group">
+      <label class="form-label" for="name">结束日期</label>
+      <input type="text" value="{{user.end}}" bindinput="onEndChange" class="form-input" placeholder="结束日期"></input>
+    </view>
+    <view class="card-buttons">
+      <button class="btn btn-primary" bind:tap="confirm">确认</button>
+      <button class="btn btn-outline" bind:tap="clearData">重置</button>
+    </view>
+    <view wx:if="{{total>0}}" class="form-group charge-group">
+      <label class="form-label total">合计：{{total}}</label>
+      <label class="form-label dash"></label>
+      <label wx:for="{{chargeList}}" wx:key="index" class="form-label vip-charge">
+      金额：{{item.money}}, {{item.name}}, {{item.time}}</label>
+      <label wx:for="{{historyList}}" wx:key="index" class="form-label non-vip">
+      金额：{{item.money}}, {{item.name}}, {{item.time}}</label>
+      <label class="form-label dash"></label>
+    </view>
+
+  </view>
+
+</scroll-view>
