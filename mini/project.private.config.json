@@ -10,15 +10,15 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/home/home",
-          "pathName": "pages/home/home",
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
           "query": "",
           "scene": null,
           "launchMode": "default"
         },
         {
-          "name": "pages/add-vip/add-vip",
-          "pathName": "pages/add-vip/add-vip",
+          "name": "pages/home/home",
+          "pathName": "pages/home/home",
           "query": "",
           "launchMode": "default",
           "scene": null

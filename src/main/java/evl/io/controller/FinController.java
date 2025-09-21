@@ -3,6 +3,8 @@ package evl.io.controller;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import evl.io.service.FinService;
+import evl.io.service.SugarUserService;
+import evl.io.utils.RestUtils;
 import evl.io.utils.ValidationUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -23,10 +25,12 @@ import static evl.io.constant.ServiceConstants.ILLEGAL_ARGS_MSG;
 public class FinController {
 
     private final FinService finService;
+    private final SugarUserService sugarUserService;
 
     @Autowired
-    public FinController(FinService finService) {
+    public FinController(FinService finService, SugarUserService sugarUserService) {
         this.finService = finService;
+        this.sugarUserService = sugarUserService;
     }
 
     @Operation(summary = "根据日期查看财务状况，开始日期和结束日期相同表示查询当天")
@@ -44,5 +48,36 @@ public class FinController {
         if (ValidationUtils.isNotValidDate(start) || ValidationUtils.isNotValidDate(end))
             throw new IllegalArgumentException(ILLEGAL_ARGS_MSG);
         return finService.findByDateGap(start, end);
+    }
+
+    @Operation(summary = "根据code返回openId")
+    @Parameters({
+            @Parameter(name = "body",
+                    description = "{<br>" +
+                            "code: res.code<br>}")
+    })
+    @PostMapping("/uid")
+    public ResponseEntity<String> getUserId(@RequestBody String body) {
+        JSONObject jsonNode = JSON.parseObject(body);
+        String code = jsonNode.getString("code");
+        String openId = RestUtils.getUid(code);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("openId", openId);
+        return ResponseEntity.ok(jsonObject.toString());
+    }
+
+    @Operation(summary = "用户登录")
+    @Parameters({
+            @Parameter(name = "body",
+                    description = "{<br>" +
+                            "name: name,<br>" +
+                            "accessKey: accessKey<br>}")
+    })
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody String body) {
+        JSONObject jsonNode = JSON.parseObject(body);
+        String name = jsonNode.getString("name");
+        String accessKey = jsonNode.getString("accessKey");
+        return sugarUserService.login(name, accessKey);
     }
 }

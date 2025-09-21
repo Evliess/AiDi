@@ -58,3 +58,12 @@ CREATE TABLE play_item (
     name VARCHAR(20) NOT NULL,
     money VARCHAR(20) NOT NULL
 );
+
+-- 创建s_user 表
+
+DROP TABLE s_user IF EXISTS;
+CREATE TABLE s_user (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    s_name VARCHAR(20) NOT NULL,
+    s_key VARCHAR(20) NOT NULL
+);

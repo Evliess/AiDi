@@ -10,7 +10,9 @@ public class ServiceConstants {
     public static final String PHONE_PATTERN = "^1[3-9]\\d{9}$";
     public static final String NA = "无";
     public static final String TYPE_DAY = "day";
-    public static final String TYPE_SEASON = "season";
-    public static final String TYPE_MONTH = "month";
-    public static final String TYPE_YEAR = "year";
+    public static final String TOKEN = "token";
+    public static final String APP_SECRET = "APP_SECRET";
+    public static final String APP_ID = "APP_ID";
+    public static final String UID_ENDPOINT = "https://api.weixin.qq.com/sns/jscode2session?appid=${appid}&secret=${secret}&js_code=${code}&grant_type=authorization_code";
+
 }

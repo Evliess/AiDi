@@ -1,4 +1,4 @@
-// app.ts
+import {BASE_URL, openId} from './utils/util'
 App({
   globalData: {
     safeTop: 0,
@@ -7,8 +7,9 @@ App({
     menuTop: 0,
     menuHeight: 0,
     menuWidth:0,
-
+    openId: "",
   },
+  BASE_URL: BASE_URL,
   onLaunch() {
     // 展示本地存储能力
     const logs = wx.getStorageSync('logs') || []
@@ -30,8 +31,21 @@ App({
     // 登录
     wx.login({
       success: res => {
-        console.log(res.code)
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        console.log(res.code);
+        wx.request({
+          url: this.BASE_URL + '/uid',
+          method: 'POST',
+          data: {"code": res.code},
+          header: {'content-type': 'application/json'},
+          success: (res: any) => {
+            this.globalData.openId = res.data.openId;
+            console.log(res.data.openId);
+          },
+          fail:(res: any)=> {
+            console.log(res);
+          }
+        });
+
       },
     })
   },

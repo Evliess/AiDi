@@ -2,51 +2,24 @@
 <navigation-bar></navigation-bar>
 <scroll-view class="container" style="padding: 4px;" scroll-y type="custom">
   <view class="title">
-    <view>毛玻璃风格卡片</view>
+    <view>AIDI 管理系统</view>
   </view>
 
   <view class="card">
-    <view class="card-content">
-      <view class="card-text">财务管理</view>
-    </view>
-
-    <view class="card-buttons">
-      <button class="btn btn-primary">详情</button>
-      <button class="btn btn-outline">分享</button>
-    </view>
-  </view>
-
-  <view class="variations">
-    <view class="variation-card">
-      <view class="text">会员管理</view>
-    </view>
-    <view class="variation-card">
-      <view class="text">数据统计</view>
-    </view>
-    <view class="variation-card">
-      <view class="text">系统设置</view>
+    <view class="card-header">
+      <p class="card-title">用户登录</p>
     </view>
     <view class="form-group">
-      <switch type="checkbox" id="agree"></switch>
-      <label for="agree" class="checkbox-label">我同意相关条款和隐私政策</label>
+      <label class="form-label" for="name">用户</label>
+      <input type="text" value="{{user.name}}" bindinput="onNameChange" class="form-input" placeholder="用户名"></input>
     </view>
-  </view>
-
-  <block wx:for="{{mems}}" wx:key="id">
-    <view class="list-item">{{item.name}}</view>
-  </block>
-
-  <view>
-    <radio-group>
-      <label class="radio">
-        <radio value="month" />月卡
-      </label>
-      <label class="radio">
-        <radio value="season" />季卡
-      </label>
-      <label class="radio">
-        <radio value="year" />年卡
-      </label>
-    </radio-group>
+    <view class="form-group">
+      <label class="form-label" for="name">密码</label>
+      <input type="text" value="{{user.pass}}" bindinput="onPassChange" class="form-input" placeholder="密码"></input>
+    </view>
+    <view class="card-buttons">
+      <button class="btn btn-primary" bind:tap="confirm">登录</button>
+      <button class="btn btn-outline" bind:tap="clearData">重置</button>
+    </view>
   </view>
 </scroll-view>
