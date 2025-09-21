@@ -126,6 +126,9 @@ Page({
     });
   },
   async onLoad() {
+    const openId = wx.getStorageSync("openId");
+    const token = wx.getStorageSync("token");
+    this.setData({openId: openId, token: token});
     try {
       const url = "/playitems";
       const findPlayItemsRes = await findPlayItems(url, this.data.openId, this.data.token);
@@ -133,9 +136,7 @@ Page({
       findPlayItemsRes.forEach((ele: { name: any; }) => {
         findItems.push({"name":ele.name, "value": ele.name})
       });
-      const openId = wx.getStorageSync("openId");
-      const token = wx.getStorageSync("token");
-      this.setData({items: findItems, openId: openId, token: token});
+      this.setData({items: findItems});
     } catch(e) {
       wx.showToast({ title: '获取项目失败!', duration: 1000, icon: 'error' });
     }

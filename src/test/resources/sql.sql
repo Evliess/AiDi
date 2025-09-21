@@ -58,6 +58,11 @@ CREATE TABLE play_item (
     name VARCHAR(20) NOT NULL,
     money VARCHAR(20) NOT NULL
 );
+INSERT INTO play_item(NAME, MONEY) VALUES('全场', '0');
+INSERT INTO play_item(NAME, MONEY) VALUES('手工', '1');
+INSERT INTO play_item(NAME, MONEY) VALUES('挖机', '2');
+INSERT INTO play_item(NAME, MONEY) VALUES('弹珠', '3');
+INSERT INTO play_item(NAME, MONEY) VALUES('兔子', '4');
 
 -- 创建s_user 表
 

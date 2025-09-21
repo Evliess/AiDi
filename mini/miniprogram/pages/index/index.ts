@@ -16,7 +16,7 @@ Page({
       const loginRes = await login(url, data);
       if(loginRes.status=="ok") {
         wx.setStorageSync("token", loginRes.token+"."+data.name);
-        wx.navigateTo({"url": "/pages/home/home"});
+        wx.redirectTo({"url": "/pages/home/home"});
       } else {
         wx.setStorageSync("token", null);
       }

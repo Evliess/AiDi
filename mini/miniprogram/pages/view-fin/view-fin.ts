@@ -55,7 +55,6 @@ Page({
     const month = (today.getMonth() + 1).toString().padStart(2, '0');
     const day = today.getDate().toString().padStart(2, '0');
     const currDay = year+"/"+month+"/"+day;
-    console.log(currDay);
     this.setData({"user.start": currDay, "user.end": currDay});
   },
   onLoad() {
