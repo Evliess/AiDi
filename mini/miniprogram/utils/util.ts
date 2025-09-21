@@ -48,6 +48,8 @@ export const addVipPlay = (url: string, openId: string, token: string, data: any
 
 export const viewVip = (url: string, openId: string, token: string,) => request<any>({url: url, method: 'GET', data: {}, header: {'content-type': 'application/json', 'X-token': token, 'X-openId': openId}});
 
+export const nonVipPlay = (url: string, openId: string, token: string, data:any) => request<any>({url: url, method: 'POST', data: data, header: {'content-type': 'application/json', 'X-token': token, 'X-openId': openId}});
+
 export const updateByPhone = (url: string, openId: string, token: string, type: string, leftCount: string, expiredAt: string) => request<any>({url: url, method: 'PUT', data: {"type": type, "leftCount":leftCount, "expiredAt":expiredAt}, header: {'content-type': 'application/json', 'X-token': token, 'X-openId': openId}});
 
 

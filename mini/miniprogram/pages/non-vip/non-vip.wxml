@@ -10,15 +10,15 @@
     </view>
     <view class="form-group">
       <label class="form-label" for="name">消费金额</label>
-      <input type="digit" id="name" class="form-input" placeholder="请输入消费金额"></input>
+      <input type="digit" value="{{user.money}}" bindinput="onMoneyChange" class="form-input" placeholder="请输入消费金额"></input>
     </view>
     <view class="form-group">
       <label class="form-label" for="name">备注</label>
-      <textarea type="text" class="form-textarea" placeholder="请输入备注"></textarea>
+      <textarea type="text" value="{{user.itemName}}" bindinput="onItemChange" class="form-textarea" placeholder="例如: 全场，挖机，手工等"></textarea>
     </view>
     <view class="card-buttons">
-      <button class="btn btn-primary">确认</button>
-      <button class="btn btn-outline">重置</button>
+      <button class="btn btn-primary" bind:tap="confirm">确认</button>
+      <button class="btn btn-outline" bind:tap="clearData">重置</button>
     </view>
   </view>
 

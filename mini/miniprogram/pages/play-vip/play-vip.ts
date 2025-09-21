@@ -52,7 +52,7 @@ Page({
       const data: any = {};
       data.phone = this.data.user.phone;
       data.score = this.data.user.score;
-      const updateScoreByPhoneRes = await updateScoreByPhone(url, openId, token, data);
+      await updateScoreByPhone(url, openId, token, data);
       wx.showToast({ title: "成功!", duration: 1000, icon: 'success' });
     } catch(e) {
       wx.showToast({ title: "出错!", duration: 1000, icon: 'error' });
@@ -73,9 +73,9 @@ Page({
       const data:any = {};
       data.phone = this.data.user.phone;
       data.item = this.data.selectedValue;
-      const addVipPlayRes = await addVipPlay(url, openId, token, data);
+      await addVipPlay(url, openId, token, data);
     } catch(e) {
-
+      wx.showToast({ title: "划卡失败！", duration: 1000, icon: 'error' });
     }
   },
 

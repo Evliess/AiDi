@@ -19,6 +19,7 @@ CREATE TABLE consumer_charge (
     charge_at BIGINT
 );
 CREATE INDEX idx_consumer_charge_phone ON consumer_charge(phone);
+CREATE INDEX idx_consumer_charge_charge_at ON consumer_charge(charge_at);
 
 -- 创建 consumer_play 表
 DROP TABLE consumer_play IF EXISTS;

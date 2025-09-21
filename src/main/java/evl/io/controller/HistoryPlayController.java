@@ -27,7 +27,7 @@ public class HistoryPlayController {
         this.historyPlayService = historyPlayService;
     }
 
-    @Operation(summary = "新增一条非会员消费记录")
+    @Operation(summary = "新增一条非会员消费记录,(-198)表示撤销消费")
     @Parameters({
             @Parameter(name = "body",
                     description = "{<br>" +

@@ -18,4 +18,8 @@ public class ValidationUtils {
     public static boolean isBlank(String str) {
         return !isNotBlank(str);
     }
+
+    public static boolean isNotValidDate(String date) {
+        return (date == null || date.isEmpty() || !date.matches(ServiceConstants.DATE_PATTERN_FULL));
+    }
 }

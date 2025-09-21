@@ -73,7 +73,6 @@ Page({
     try{
       const url = "/consumer/" + this.data.user.phone;
       const findVipByPhoneRes = await findVipByPhone(url, openId, token);
-      console.log(findVipByPhoneRes);
       if(findVipByPhoneRes.status=="ng") {
         this.setData({"user.name": null});
         wx.showToast({ title: findVipByPhoneRes.message, duration: 1000, icon: 'error' });

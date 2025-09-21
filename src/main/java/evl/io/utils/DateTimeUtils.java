@@ -15,18 +15,22 @@ public class DateTimeUtils {
         return localDateTime.format(formatter);
     }
 
+    public static long dateToMillisPlus1Day(String dateString) {
+        return dateToMillis(dateString, "yyyy/MM/dd", ZoneId.systemDefault().toString(), 1);
+    }
+
     public static long dateToMillis(String dateString) {
-        return dateToMillis(dateString, "yyyy/MM/dd", ZoneId.systemDefault().toString());
+        return dateToMillis(dateString, "yyyy/MM/dd", ZoneId.systemDefault().toString(), 0);
     }
 
     public static long dateToMillis(String dateString, String pattern) {
-        return dateToMillis(dateString, pattern, ZoneId.systemDefault().toString());
+        return dateToMillis(dateString, pattern, ZoneId.systemDefault().toString(), 0);
     }
 
-    public static long dateToMillis(String dateString, String pattern, String zoneId) {
+    public static long dateToMillis(String dateString, String pattern, String zoneId, long days) {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
-            LocalDate date = LocalDate.parse(dateString, formatter);
+            LocalDate date = LocalDate.parse(dateString, formatter).plusDays(days);
             return date.atStartOfDay(ZoneId.of(zoneId))
                     .toInstant()
                     .toEpochMilli();

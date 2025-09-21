@@ -11,4 +11,7 @@ import java.util.List;
 public interface HistoryPlayRepo extends JpaRepository<HistoryPlay, Long> {
     @Query("SELECT a from HistoryPlay a WHERE a.consumeAt >= :consumeAt")
     List<HistoryPlay> findAllByDate(Long consumeAt);
+
+    @Query("SELECT a from HistoryPlay a WHERE a.consumeAt >= :start and a.consumeAt < :end")
+    List<HistoryPlay> findByDateGap(Long start, Long end);
 }
