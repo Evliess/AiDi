@@ -1,6 +1,6 @@
 <!--home.wxml-->
 <navigation-bar></navigation-bar>
-<scroll-view class="container" style="padding: 0 4px;" scroll-y type="custom">
+<scroll-view class="container" style="padding: 4px;" scroll-y type="custom">
   <view class="title">
     <view>AIDI 后台管理</view>
   </view>
@@ -13,6 +13,9 @@
     </view>
     <view class="variation-card" bind:tap="playVip">
       <view class="text">会员划卡</view>
+    </view>
+    <view class="variation-card" bind:tap="viewVip">
+      <view class="text">会员信息</view>
     </view>
     <view class="variation-card" bind:tap="addNonVip">
       <view class="text">散客消费</view>

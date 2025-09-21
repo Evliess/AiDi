@@ -99,4 +99,14 @@ public class ConsumerController {
         String expiredAt = jsonNode.getString("expiredAt");
         return consumerService.updateByPhone(phone, leftCount, type, expiredAt);
     }
+
+    @Operation(summary = "根据手机号查看会员基本信息，充值记录，消费记录")
+    @Parameters({
+            @Parameter(name = "phone", description = "手机号", example = "15611112222"),
+    })
+    @GetMapping("/consumer/view-info/{phone}")
+    public ResponseEntity<String> viewVip(@PathVariable("phone") String phone) {
+        if (ValidationUtils.isNotValidPhone(phone)) throw new IllegalArgumentException(ILLEGAL_ARGS_MSG);
+        return consumerService.viewVip(phone);
+    }
 }

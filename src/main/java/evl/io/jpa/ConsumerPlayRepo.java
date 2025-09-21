@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface ConsumerPlayRepo extends JpaRepository<ConsumerPlay, Long> {
 
-    @Query("SELECT a from ConsumerPlay a WHERE a.phone= :phone")
+    @Query("SELECT a from ConsumerPlay a WHERE a.phone= :phone ORDER BY a.consumeAt DESC")
     List<ConsumerPlay> findAllByPhone(String phone);
 }

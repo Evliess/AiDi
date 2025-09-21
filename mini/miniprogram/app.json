@@ -5,7 +5,8 @@
     "pages/non-vip/non-vip",
     "pages/add-vip/add-vip",
     "pages/charge-vip/charge-vip",
-    "pages/play-vip/play-vip"
+    "pages/play-vip/play-vip",
+    "pages/view-vip/view-vip"
   ],
   "window": {
     "navigationBarTextStyle": "black",

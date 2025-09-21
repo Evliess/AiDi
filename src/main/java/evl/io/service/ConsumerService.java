@@ -1,11 +1,14 @@
 package evl.io.service;
 
+import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import evl.io.constant.ServiceConstants;
 import evl.io.entity.Consumer;
 import evl.io.entity.ConsumerCharge;
+import evl.io.entity.ConsumerPlay;
 import evl.io.entity.ConsumerScore;
 import evl.io.jpa.ConsumerChargeRepo;
+import evl.io.jpa.ConsumerPlayRepo;
 import evl.io.jpa.ConsumerRepo;
 import evl.io.jpa.ConsumerScoreRepo;
 import evl.io.utils.DateTimeUtils;
@@ -23,11 +26,15 @@ public class ConsumerService {
     private final ConsumerRepo consumerRepo;
     private final ConsumerScoreRepo consumerScoreRepo;
     private final ConsumerChargeRepo consumerChargeRepo;
+    private final ConsumerPlayRepo consumerPlayRepo;
 
-    public ConsumerService(ConsumerRepo consumerRepo, ConsumerScoreRepo consumerScoreRepo, ConsumerChargeRepo consumerChargeRepo) {
+    public ConsumerService(ConsumerRepo consumerRepo, ConsumerScoreRepo consumerScoreRepo
+            , ConsumerChargeRepo consumerChargeRepo
+            , ConsumerPlayRepo consumerPlayRepo) {
         this.consumerRepo = consumerRepo;
         this.consumerScoreRepo = consumerScoreRepo;
         this.consumerChargeRepo = consumerChargeRepo;
+        this.consumerPlayRepo = consumerPlayRepo;
     }
 
     @Transactional
@@ -90,7 +97,7 @@ public class ConsumerService {
         return ResponseEntity.ok(jsonObject.toString());
     }
 
-    public ResponseEntity<String> findByPhone(String phone) {
+    private JSONObject _findByPhone(String phone) {
         Consumer consumer = consumerRepo.findByPhone(phone);
         JSONObject jsonObject = new JSONObject();
         if (consumer == null) {
@@ -118,6 +125,11 @@ public class ConsumerService {
             }
             jsonObject.put(ServiceConstants.STATUS, ServiceConstants.OK);
         }
+        return jsonObject;
+    }
+
+    public ResponseEntity<String> findByPhone(String phone) {
+        JSONObject jsonObject = _findByPhone(phone);
         return ResponseEntity.ok(jsonObject.toString());
     }
 
@@ -134,6 +146,32 @@ public class ConsumerService {
             consumerRepo.save(consumer);
             jsonObject.put(ServiceConstants.STATUS, ServiceConstants.OK);
         }
+        return ResponseEntity.ok(jsonObject.toString());
+    }
+
+    public ResponseEntity<String> viewVip(String phone) {
+        JSONObject jsonObject = _findByPhone(phone);
+
+        List<ConsumerCharge> consumerChargeList = consumerChargeRepo.findAllByPhone(phone);
+        JSONArray chargeLists = new JSONArray();
+        for (ConsumerCharge consumerCharge : consumerChargeList) {
+            JSONObject chargeObject = new JSONObject();
+            chargeObject.put("money", consumerCharge.getMoney());
+            chargeObject.put("chargeAt", DateTimeUtils.convertToFormattedString(consumerCharge.getChargeAt()));
+            chargeLists.add(chargeObject);
+        }
+        jsonObject.put("chargeLists", chargeLists);
+
+        List<ConsumerPlay> consumerPlayList = consumerPlayRepo.findAllByPhone(phone);
+        JSONArray playLists = new JSONArray();
+        for (ConsumerPlay consumerPlay : consumerPlayList) {
+            JSONObject playObject = new JSONObject();
+            playObject.put("item", consumerPlay.getItemName());
+            playObject.put("consumedAt", DateTimeUtils.convertToFormattedString(consumerPlay.getConsumeAt()));
+            playLists.add(playObject);
+        }
+        jsonObject.put("playLists", playLists);
+
         return ResponseEntity.ok(jsonObject.toString());
     }
 }

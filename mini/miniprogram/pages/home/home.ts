@@ -8,6 +8,7 @@ Page({
   addNonVip: function(){wx.navigateTo({"url": "/pages/non-vip/non-vip"});},
   chargeVip: function(){wx.navigateTo({"url": "/pages/charge-vip/charge-vip"});},
   playVip: function(){wx.navigateTo({"url": "/pages/play-vip/play-vip"});},
+  viewVip: function() {wx.navigateTo({"url": "/pages/view-vip/view-vip"});},
   onLoad: function() {
     const safeTop = app.globalData.safeTop;
     this.setData({

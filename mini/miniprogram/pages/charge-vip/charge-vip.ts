@@ -67,10 +67,9 @@ Page({
         newUserInfo[key] = "";
       }
     }
-    this.setData({userInfo: newUserInfo});
+    this.setData({user: newUserInfo});
   },
   async find(){
-    this.clearData();
     try{
       const url = "/consumer/" + this.data.user.phone;
       const findVipByPhoneRes = await findVipByPhone(url, openId, token);
@@ -99,6 +98,7 @@ Page({
         this.setData({"user.oldLeftCount": findVipByPhoneRes.leftCount});
       }
     } catch(e) {
+      console.error(e);
       wx.showToast({ title: '请检查手机号!', duration: 1000, icon: 'error' });
       return;
     }
