@@ -1,12 +1,14 @@
 import { app } from '../../app';
-import { openId, token, nonVipPlay } from '../../utils/util'
+import { nonVipPlay } from '../../utils/util'
 Page({
   data: {
     safeTop: 0,
     user: {
       money: "",
       itemName: "",
-    }
+    },
+    openId: "",
+    token: "",
   },
 
   onMoneyChange: function (e: any) {
@@ -36,7 +38,7 @@ Page({
     data.money = this.data.user.money;
     data.itemName = this.data.user.itemName;
     try {
-      await nonVipPlay(url, openId, token, data);
+      await nonVipPlay(url, this.data.openId, this.data.token, data);
       wx.showToast({ title: '成功!', duration: 1000, icon: 'success' });
     } catch(e) {
       wx.showToast({ title: '出错了!', duration: 1000, icon: 'error' });
@@ -44,8 +46,12 @@ Page({
   },
   onLoad: function() {
     const safeTop = app.globalData.safeTop;
+    const openId = wx.getStorageSync("openId");
+    const token = wx.getStorageSync("token");
     this.setData({
-      safeTop: safeTop
+      safeTop: safeTop,
+      openId: openId,
+      token: token,
     });
   },
 })

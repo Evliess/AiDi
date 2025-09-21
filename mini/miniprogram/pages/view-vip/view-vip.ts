@@ -1,8 +1,9 @@
-import { app } from '../../app';
-import { openId, token, viewVip } from '../../utils/util'
+import { viewVip } from '../../utils/util'
 Page({
 
   data: {
+    openId: "",
+    token: "",
     user: {
       name: "",
       phone: "",
@@ -39,7 +40,7 @@ Page({
   async find(){
     try{
       const url = "/consumer/view-info/" + this.data.user.phone;
-      const findVipByPhoneRes = await viewVip(url, openId, token);
+      const findVipByPhoneRes = await viewVip(url, this.data.openId, this.data.token);
       console.log(findVipByPhoneRes);
       if(findVipByPhoneRes.status=="ng") {
         this.setData({"user.name": null});
@@ -71,7 +72,12 @@ Page({
     }
   },
   onLoad() {
-
+    const openId = wx.getStorageSync("openId");
+    const token = wx.getStorageSync("token");
+    this.setData({
+      openId: openId,
+      token: token
+    });
   },
 
   /**

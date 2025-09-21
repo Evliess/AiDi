@@ -39,7 +39,7 @@ App({
           header: {'content-type': 'application/json'},
           success: (res: any) => {
             this.globalData.openId = res.data.openId;
-            console.log(res.data.openId);
+            wx.setStorageSync("openId", res.data.openId);
           },
           fail:(res: any)=> {
             console.log(res);

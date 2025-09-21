@@ -1,6 +1,6 @@
 // pages/add-vip/add-vip.ts
 import { app } from '../../app';
-import { openId, token, addVip } from '../../utils/util'
+import { addVip } from '../../utils/util'
 
 Page({
   data: {
@@ -18,7 +18,9 @@ Page({
       money: "",
       leftCount: "",
       expiredAt: "",
-    }
+    },
+    openId: "",
+    token: "",
   },
   onRadioChange: function (e: any) {
     const selectedValue = e.detail.value;
@@ -30,9 +32,13 @@ Page({
   },
   onLoad: function () {
     const safeTop = app.globalData.safeTop;
+    const openId = wx.getStorageSync("openId");
+    const token = wx.getStorageSync("token");
     this.setData({
       safeTop: safeTop,
-      selectedValue: this.data.items[0].value
+      selectedValue: this.data.items[0].value,
+      openId: openId,
+      token: token,
     });
   },
   onNameChange: function (e: any) {
@@ -73,7 +79,7 @@ Page({
       data.type = this.data.selectedValue;
       data.leftCount = this.data.user.leftCount;
       data.expiredAt = this.data.user.expiredAt;
-      const resAddVip = await addVip("/consumers", openId, token, data);
+      const resAddVip = await addVip("/consumers", this.data.openId, this.data.token, data);
       if (resAddVip.status != "ok") {
         wx.showToast({ title: '请检查手机号!', duration: 1000, icon: 'error' });
         return;

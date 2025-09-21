@@ -1,6 +1,6 @@
 // pages/charge-vip/charge-vip.ts
 import { app } from '../../app';
-import { openId, token, addCharge, findVipByPhone } from '../../utils/util'
+import { addCharge, findVipByPhone } from '../../utils/util'
 Page({
 
   /**
@@ -15,6 +15,8 @@ Page({
       { name: '季卡', value: 'season' },
       { name: '年卡', value: 'year' }
     ],
+    openId: "",
+    token: "",
     user: {
       name: "",
       phone: "",
@@ -48,7 +50,7 @@ Page({
       data.type = this.data.selectedValue;
       data.leftCount = this.data.user.leftCount;
       data.expiredAt = this.data.user.expiredAt;
-      const resAddVip = await addCharge("/consumers-charge", openId, token, data);
+      const resAddVip = await addCharge("/consumers-charge", this.data.openId, this.data.token, data);
       if (resAddVip.status != "ok") {
         wx.showToast({ title: '请检查手机号!', duration: 1000, icon: 'error' });
         return;
@@ -72,7 +74,7 @@ Page({
   async find(){
     try{
       const url = "/consumer/" + this.data.user.phone;
-      const findVipByPhoneRes = await findVipByPhone(url, openId, token);
+      const findVipByPhoneRes = await findVipByPhone(url, this.data.openId, this.data.token);
       if(findVipByPhoneRes.status=="ng") {
         this.setData({"user.name": null});
         wx.showToast({ title: findVipByPhoneRes.message, duration: 1000, icon: 'error' });
@@ -127,9 +129,13 @@ Page({
   },
   onLoad: function() {
     const safeTop = app.globalData.safeTop;
+    const openId = wx.getStorageSync("openId");
+    const token = wx.getStorageSync("token");
     this.setData({
       safeTop: safeTop,
-      selectedValue: this.data.items[0].value
+      selectedValue: this.data.items[0].value,
+      openId: openId,
+      token: token,
     });
   },
 

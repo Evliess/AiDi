@@ -1,9 +1,10 @@
-import { app } from '../../app';
-import { openId, token, viewFin } from '../../utils/util'
+import { viewFin } from '../../utils/util'
 Page({
 
   data: {
     safeTop: 0,
+    openId: "",
+    token: "",
     user: {
       start: "",
       end: "",
@@ -20,7 +21,7 @@ Page({
     data.start = this.data.user.start;
     data.end = this.data.user.end;
     try {
-      const viewFinRes = await viewFin(url, openId, token, data);
+      const viewFinRes = await viewFin(url, this.data.openId, this.data.token, data);
       this.setData({"chargeList": viewFinRes.chargeList, "historyList": viewFinRes.historyList, "total": viewFinRes.total})
     } catch(e) {
       wx.showToast({ title: '检查日期格式!', duration: 1000, icon: 'error' });
@@ -61,7 +62,12 @@ Page({
     this.init();
   },
   onReady() {
-
+    const openId = wx.getStorageSync("openId");
+    const token = wx.getStorageSync("token");
+    this.setData({
+      openId: openId,
+      token: token
+    });
   },
 
   onShow() {
