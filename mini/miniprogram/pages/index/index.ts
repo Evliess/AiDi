@@ -24,7 +24,7 @@ Page({
       wx.showToast({ title: '登录失败!', duration: 1000, icon: 'error' });
     }
   },
-  clearData: function(e: any) {
+  clearData: function() {
     this.setData({"user.name": "", "user.pass": ""});
   },
 

@@ -1,4 +1,4 @@
-import {BASE_URL, openId} from './utils/util'
+import { BASE_URL_PUBLIC } from './utils/util'
 App({
   globalData: {
     safeTop: 0,
@@ -9,7 +9,7 @@ App({
     menuWidth:0,
     openId: "",
   },
-  BASE_URL: BASE_URL,
+  BASE_URL: BASE_URL_PUBLIC,
   onLaunch() {
     // 展示本地存储能力
     const logs = wx.getStorageSync('logs') || []
@@ -31,7 +31,6 @@ App({
     // 登录
     wx.login({
       success: res => {
-        console.log(res.code);
         wx.request({
           url: this.BASE_URL + '/uid',
           method: 'POST',

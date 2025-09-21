@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/public/v1")
+@RequestMapping("/private/v1")
 @Tag(name = "增值项目管理", description = "增值项目管理的操作接口")
 public class PlayItemController {
 

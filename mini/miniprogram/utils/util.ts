@@ -6,11 +6,31 @@ interface RequestOptions {
 }
 export const openId = "";
 export const token = "";
-export const BASE_URL = 'http://localhost:8080/public/v1';
+export const BASE_URL = 'http://localhost:8080/private/v1';
+export const BASE_URL_PUBLIC = 'http://localhost:8080/public/v1';
 export const request = <T = any>(options: RequestOptions) : Promise<T> => {
   return new Promise((resolve, reject)=> {
     wx.request({
       url: BASE_URL + options.url,
+      method: options.method,
+      data: options.data || {},
+      header: options.header || {},
+      timeout: 120000,
+      success: (res) => {
+        if(res.statusCode == 200) {
+          resolve(res.data as T);
+        } else {
+          reject(res)
+        }
+      },
+      fail: (err) => {reject(err);},
+    });
+  });
+}
+export const request_public = <T = any>(options: RequestOptions) : Promise<T> => {
+  return new Promise((resolve, reject)=> {
+    wx.request({
+      url: BASE_URL_PUBLIC + options.url,
       method: options.method,
       data: options.data || {},
       header: options.header || {},
@@ -52,7 +72,7 @@ export const nonVipPlay = (url: string, openId: string, token: string, data:any)
 
 export const viewFin = (url: string, openId: string, token: string, data:any) => request<any>({url: url, method: 'POST', data: data, header: {'content-type': 'application/json', 'X-token': token, 'X-openId': openId}});
 
-export const login = (url: string, data:any) => request<any>({url: url, method: 'POST', data: data, header: {}});
+export const login = (url: string, data:any) => request_public<any>({url: url, method: 'POST', data: data, header: {}});
 
 export const updateByPhone = (url: string, openId: string, token: string, type: string, leftCount: string, expiredAt: string) => request<any>({url: url, method: 'PUT', data: {"type": type, "leftCount":leftCount, "expiredAt":expiredAt}, header: {'content-type': 'application/json', 'X-token': token, 'X-openId': openId}});
 

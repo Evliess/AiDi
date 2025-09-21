@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import static evl.io.constant.ServiceConstants.ILLEGAL_ARGS_MSG;
 
 @RestController
-@RequestMapping("/public/v1")
+@RequestMapping("/private/v1")
 @Tag(name = "非会员管理", description = "非会员管理的操作接口")
 public class HistoryPlayController {
 

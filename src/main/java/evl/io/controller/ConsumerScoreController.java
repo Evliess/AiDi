@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import static evl.io.constant.ServiceConstants.ILLEGAL_ARGS_MSG;
 
 @RestController
-@RequestMapping("/public/v1")
+@RequestMapping("/private/v1")
 @Tag(name = "会员积分管理", description = "会员积分的操作接口")
 public class ConsumerScoreController {
     private final ConsumerScoreService consumerScoreService;

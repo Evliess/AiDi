@@ -15,7 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/public/v1")
+@RequestMapping("/private/v1")
 @Tag(name = "会员充值", description = "会员充值的操作接口")
 public class ConsumerChargeController {
 

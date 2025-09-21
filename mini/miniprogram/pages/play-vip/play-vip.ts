@@ -130,7 +130,7 @@ Page({
       const url = "/playitems";
       const findPlayItemsRes = await findPlayItems(url, this.data.openId, this.data.token);
       const findItems:any = [];
-      findPlayItemsRes.forEach(ele => {
+      findPlayItemsRes.forEach((ele: { name: any; }) => {
         findItems.push({"name":ele.name, "value": ele.name})
       });
       const openId = wx.getStorageSync("openId");

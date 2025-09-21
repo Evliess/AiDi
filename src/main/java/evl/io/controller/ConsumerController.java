@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/public/v1")
+@RequestMapping("/private/v1")
 @Tag(name = "会员管理", description = "会员管理的操作接口")
 public class ConsumerController {
     public static final String ILLEGAL_ARGS_MSG = "参数错误！";
