@@ -35,7 +35,7 @@
     <view class="card-header">
       <p class="card-title">划卡</p>
     </view>
-    <view class="form-group">
+    <view wx:if="{{user.oldType=='day'}}" class="form-group">
       <label class="form-label" for="money">设置剩余次数</label>
       <input type="number" class="form-input" placeholder="请设置剩余次数" bindinput="onLeftCountChange" value="{{user.leftCount}}"></input>
     </view>

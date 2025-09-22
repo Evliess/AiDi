@@ -306,6 +306,23 @@
     border-radius: 8px;
     padding: 1px;
   }
+
+  .float-right {
+    float: right;
+  }
+  .total {
+    font-size: 20px;
+    color: #ffd36d;
+  }
+  .dash {
+    border: 1px white dashed;
+  }
+  .money {
+    color: #ffd36d;
+    margin-right: 4px;
+    border: 1px dashed #ffd36d;
+    border-radius: 4px;
+  }
 }
 
 

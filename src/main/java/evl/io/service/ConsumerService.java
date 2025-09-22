@@ -17,6 +17,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
 
@@ -154,13 +155,16 @@ public class ConsumerService {
 
         List<ConsumerCharge> consumerChargeList = consumerChargeRepo.findAllByPhone(phone);
         JSONArray chargeLists = new JSONArray();
+        BigDecimal total = new BigDecimal("0");
         for (ConsumerCharge consumerCharge : consumerChargeList) {
             JSONObject chargeObject = new JSONObject();
             chargeObject.put("money", consumerCharge.getMoney());
+            total = total.add(new BigDecimal(consumerCharge.getMoney()));
             chargeObject.put("chargeAt", DateTimeUtils.convertToFormattedString(consumerCharge.getChargeAt()));
             chargeLists.add(chargeObject);
         }
         jsonObject.put("chargeLists", chargeLists);
+        jsonObject.put("chargeTotal", total);
 
         List<ConsumerPlay> consumerPlayList = consumerPlayRepo.findAllByPhone(phone);
         JSONArray playLists = new JSONArray();

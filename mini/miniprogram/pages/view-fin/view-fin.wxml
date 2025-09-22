@@ -24,9 +24,9 @@
       <label class="form-label total">合计：{{total}}</label>
       <label class="form-label dash"></label>
       <label wx:for="{{chargeList}}" wx:key="index" class="form-label vip-charge">
-      金额：{{item.money}}, {{item.name}}, {{item.time}}</label>
+      <text class="money">{{item.money}}</text>{{item.name}}<text class="float-right">{{item.time}}</text></label>
       <label wx:for="{{historyList}}" wx:key="index" class="form-label non-vip">
-      金额：{{item.money}}, {{item.name}}, {{item.time}}</label>
+      <text class="money">{{item.money}}</text>{{item.name}}<text class="float-right">{{item.time}}</text></label>
       <label class="form-label dash"></label>
     </view>
 

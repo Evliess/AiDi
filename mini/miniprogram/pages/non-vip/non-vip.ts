@@ -13,7 +13,9 @@ Page({
 
   onMoneyChange: function (e: any) {
     const value = e.detail.value;
-    if (value !== null && value.length > 0) this.setData({ "user.money": value, });
+    if (value !== null && value.length > 0 ) {
+      this.setData({ "user.money": value, });
+    } 
   },
 
   onItemChange: function (e: any) {

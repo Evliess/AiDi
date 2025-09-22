@@ -35,8 +35,10 @@
       <p class="card-title">充值记录</p>
     </view>
     <view class="form-group" wx:if="{{chargeLists.length>0}}">
+      <label class="form-label total">合计：{{chargeTotal}}</label>
+      <label class="form-label dash"></label>
       <label wx:for="{{chargeLists}}" wx:key="index" class="form-label">
-      金额：{{item.money}}， {{item.chargeAt}}</label>
+    <text class="money">{{item.money}}</text> <text class="float-right">{{item.chargeAt}}</text></label>
     </view>
   </view>
 
@@ -46,7 +48,7 @@
     </view>
     <view class="form-group" wx:if="{{chargeLists.length>0}}">
       <label wx:for="{{playLists}}" wx:key="index" class="form-label">
-      {{item.item}}，{{item.consumedAt}}</label>
+      {{item.item}} <text class="float-right">{{item.consumedAt}}</text></label>
     </view>
   </view>
 

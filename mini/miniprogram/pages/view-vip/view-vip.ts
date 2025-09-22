@@ -20,6 +20,7 @@ Page({
     },
     playLists: [],
     chargeList: [],
+    chargeTotal:"",
   },
 
   onPhoneChange: function (e: any) {
@@ -35,13 +36,12 @@ Page({
         newUserInfo[key] = "";
       }
     }
-    this.setData({user: newUserInfo, playLists:[], chargeLists:[]});
+    this.setData({user: newUserInfo, playLists:[], chargeLists:[], chargeTotal: ""});
   },
   async find(){
     try{
       const url = "/consumer/view-info/" + this.data.user.phone;
       const findVipByPhoneRes = await viewVip(url, this.data.openId, this.data.token);
-      console.log(findVipByPhoneRes);
       if(findVipByPhoneRes.status=="ng") {
         this.setData({"user.name": null, playLists:[], chargeLists:[]});
         wx.showToast({ title: findVipByPhoneRes.message, duration: 1000, icon: 'error' });
@@ -65,7 +65,7 @@ Page({
       } else {
         this.setData({"user.oldLeftCount": findVipByPhoneRes.leftCount});
       }
-      this.setData({"playLists": findVipByPhoneRes.playLists, "chargeLists": findVipByPhoneRes.chargeLists});
+      this.setData({"playLists": findVipByPhoneRes.playLists, "chargeLists": findVipByPhoneRes.chargeLists, "chargeTotal": findVipByPhoneRes.chargeTotal});
     } catch(e) {
       wx.showToast({ title: '请检查手机号!', duration: 1000, icon: 'error' });
       return;

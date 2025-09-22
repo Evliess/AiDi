@@ -35,7 +35,7 @@ Page({
         newUserInfo[key] = "";
       }
     }
-    this.setData({userInfo: newUserInfo});
+    this.setData({userInfo: newUserInfo, "user.score": "", "selectedValue": "", "user.leftCount": ""});
   },
   onScoreChange: function(e: any){
     const value = e.detail.value;
@@ -54,6 +54,7 @@ Page({
       data.phone = this.data.user.phone;
       data.score = this.data.user.score;
       await updateScoreByPhone(url, this.data.openId, this.data.token, data);
+      this.setData({"user.oldScore": this.data.user.score});
       wx.showToast({ title: "成功!", duration: 1000, icon: 'success' });
     } catch(e) {
       wx.showToast({ title: "出错!", duration: 1000, icon: 'error' });
@@ -61,6 +62,9 @@ Page({
   },
   async play() {
     try{
+      if(this.data.user.oldType!="day") {
+        this.setData({"user.leftCount": "0"});
+      }
       const url = "/consumer/left-count/"+this.data.user.phone+"/"+this.data.user.leftCount;
       this.setData({"user.oldLeftCount":this.data.user.leftCount});
       await updateLeftCountByPhone(url, this.data.openId, this.data.token);
@@ -142,52 +146,12 @@ Page({
     }
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
+  onReady() {},
+  onShow() {},
+  onHide() {},
+  onUnload() {},
+  onPullDownRefresh() {},
+  onReachBottom() {},
+  onShareAppMessage() {},
 
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
 })
