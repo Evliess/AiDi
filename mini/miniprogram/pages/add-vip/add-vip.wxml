@@ -9,12 +9,12 @@
       <p class="card-title">新增会员</p>
     </view>
     <view class="form-group">
-      <label class="form-label" for="name">会员名字</label>
-      <input type="text" class="form-input" placeholder="请输入会员名字" value="{{user.name}}" bindinput="onNameChange"></input>
+      <label class="form-label" for="name">会员昵称</label>
+      <input type="text" class="form-input" placeholder="请输入会员昵称" value="{{user.name}}" bindinput="onNameChange"></input>
     </view>
     <view class="form-group">
-      <label class="form-label" for="phone">手机号</label>
-      <input type="text" class="form-input" placeholder="请输入手机号" value="{{user.phone}}" bindinput="onPhoneChange"></input>
+      <label class="form-label" for="phone">会员号</label>
+      <input type="text" class="form-input" placeholder="请输入会员号" value="{{user.phone}}" bindinput="onPhoneChange"></input>
     </view>
     <view class="form-group">
       <label class="form-label" for="money">充值金额</label>

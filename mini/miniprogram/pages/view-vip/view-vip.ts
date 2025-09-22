@@ -67,7 +67,7 @@ Page({
       }
       this.setData({"playLists": findVipByPhoneRes.playLists, "chargeLists": findVipByPhoneRes.chargeLists, "chargeTotal": findVipByPhoneRes.chargeTotal});
     } catch(e) {
-      wx.showToast({ title: '请检查手机号!', duration: 1000, icon: 'error' });
+      wx.showToast({ title: '请检查会员号!', duration: 1000, icon: 'error' });
       return;
     }
   },

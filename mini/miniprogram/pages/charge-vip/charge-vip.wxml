@@ -10,8 +10,8 @@
       <p class="card-title">会员充值</p>
     </view>
     <view class="form-group">
-      <label class="form-label" for="phone">手机号</label>
-      <input type="text" class="form-input" placeholder="请输入手机号" bindinput="onPhoneChange" value="{{user.phone}}"></input>
+      <label class="form-label" for="phone">会员号</label>
+      <input type="text" class="form-input" placeholder="请输入会员号" bindinput="onPhoneChange" value="{{user.phone}}"></input>
     </view>
     <view class="card-buttons">
       <button class="btn btn-outline" bind:tap="find">查找</button>
@@ -19,7 +19,7 @@
     </view>
     <view wx:if="{{user.name}}" class="form-group" style="margin-top: 6px;">
       <view>
-        <text class="">会员名字: {{user.name}}</text>
+        <text class="">会员昵称: {{user.name}}</text>
         <text class="text-class">会员类型: <text class="type">{{user.chineseType}}</text></text>
         <text wx:if="{{user.score}}" class="text-class">会员积分: {{user.score}}</text>
       </view>

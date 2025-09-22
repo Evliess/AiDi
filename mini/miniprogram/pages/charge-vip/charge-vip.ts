@@ -38,7 +38,7 @@ Page({
       const data:any = {};
       data.phone = this.data.user.phone;
       if(!data.phone) {
-        wx.showToast({ title: '请检查手机号!', duration: 1000, icon: 'error' });
+        wx.showToast({ title: '请检查会员号!', duration: 1000, icon: 'error' });
         return;
       }
       data.money = this.data.user.money;
@@ -52,12 +52,12 @@ Page({
       data.expiredAt = this.data.user.expiredAt;
       const resAddVip = await addCharge("/consumers-charge", this.data.openId, this.data.token, data);
       if (resAddVip.status != "ok") {
-        wx.showToast({ title: '请检查手机号!', duration: 1000, icon: 'error' });
+        wx.showToast({ title: '请检查会员号!', duration: 1000, icon: 'error' });
         return;
       }
       wx.showToast({ title: '充值成功!', duration: 1000, icon: 'success' });
     } catch (e) {
-      wx.showToast({ title: '请检查手机号!', duration: 1000, icon: 'error' });
+      wx.showToast({ title: '请检查会员号!', duration: 1000, icon: 'error' });
       return;
     }
   },
@@ -100,7 +100,7 @@ Page({
       }
     } catch(e) {
       console.error(e);
-      wx.showToast({ title: '请检查手机号!', duration: 1000, icon: 'error' });
+      wx.showToast({ title: '请检查会员号!', duration: 1000, icon: 'error' });
       return;
     }
   },

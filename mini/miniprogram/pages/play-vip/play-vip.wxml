@@ -10,12 +10,12 @@
       <p class="card-title">会员划卡</p>
     </view>
     <view class="form-group">
-      <label class="form-label" for="phone">手机号</label>
-      <input type="text" class="form-input" placeholder="请输入手机号" value="{{user.phone}}"bindinput="onPhoneChange"></input>
+      <label class="form-label" for="phone">会员号</label>
+      <input type="text" class="form-input" placeholder="请输入会员号" value="{{user.phone}}"bindinput="onPhoneChange"></input>
     </view>
     <view wx:if="{{user.name}}" class="form-group" style="margin-top: 6px;">
       <view>
-        <text class="">会员名字: {{user.name}}</text>
+        <text class="">会员昵称: {{user.name}}</text>
         <text class="text-class">会员类型: <text class="type">{{user.chineseType}}</text></text>
         <text wx:if="{{user.oldScore}}" class="text-class">会员积分: {{user.oldScore}}</text>
       </view>
