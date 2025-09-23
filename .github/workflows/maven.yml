@@ -38,7 +38,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: aidi     # 构件名称，替换为你的应用名
-        path: backend/sugar/target/*.jar # 上传backend/target目录下的所有JAR文件
+        path: target/*.jar # 上传backend/target目录下的所有JAR文件
   create-release:
     runs-on: ubuntu-latest
     needs: build # 确保此job在build job完成后执行
