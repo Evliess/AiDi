@@ -1,6 +1,6 @@
 <!--pages/non-vip/non-vip.wxml-->
 <navigation-bar></navigation-bar>
-<scroll-view class="container" style="padding: 4px 4px 5vh 4px;" scroll-y type="custom">
+<view class="container" style="padding: 4px;" scroll-y type="custom">
   <view class="title">
     <view>AIDI 财务一览</view>
   </view>
@@ -32,4 +32,4 @@
 
   </view>
 
-</scroll-view>
+</view>

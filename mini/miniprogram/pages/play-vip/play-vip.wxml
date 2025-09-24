@@ -1,6 +1,6 @@
 <!--pages/add-vip/add-vip.wxml-->
 <navigation-bar></navigation-bar>
-<scroll-view class="container" style="padding: 4px;" scroll-y type="custom">
+<view class="container" style="padding: 4px;" scroll-y type="custom">
   <view class="title">
     <view>AIDI 会员划卡</view>
   </view>
@@ -67,4 +67,4 @@
     </view>
   </view>
 
-</scroll-view>
+</view>

@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <navigation-bar></navigation-bar>
-<scroll-view class="container" style="padding: 4px;" scroll-y type="custom">
+<view class="container" style="padding: 4px;" scroll-y type="custom">
   <view class="title">
     <view>AIDI 管理系统</view>
   </view>
@@ -22,4 +22,4 @@
       <button class="btn btn-outline" bind:tap="clearData">重置</button>
     </view>
   </view>
-</scroll-view>
+</view>

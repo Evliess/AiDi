@@ -1,6 +1,6 @@
 <!--home.wxml-->
 <navigation-bar></navigation-bar>
-<scroll-view class="container" style="padding: 4px;" scroll-y type="custom">
+<view class="container" style="padding: 4px;" scroll-y type="custom">
   <view class="title">
     <view>AIDI 后台管理</view>
   </view>
@@ -24,4 +24,4 @@
       <view class="text">财务一览</view>
     </view>
   </view>
-</scroll-view>
+</view>
