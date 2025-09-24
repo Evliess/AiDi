@@ -56,7 +56,7 @@ jobs:
     - name: Create GitHub Release & Upload Asset
       uses: softprops/action-gh-release@v1 # 一个常用的创建Release的Action
       with:
-        tag_name: ${{ github.ref_name }}       # 使用触发事件的git ref名称作为标签，例如release事件中的tag
+        tag_name: ${{ github.ref_name }}-tag       # 使用触发事件的git ref名称作为标签，例如release事件中的tag
         name: Release ${{ github.ref_name }}
         body: ${{ github.event.release.body }} # 读取Release事件中的描述正文
         # 如果你是在push到分支时触发，可能需要动态生成版本号，例如从pom.xml中读取
