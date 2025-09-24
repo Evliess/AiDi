@@ -2,9 +2,9 @@ name: Build Maven Application
 on:
   push:
 
-    branches: [ release/dev, main ]   # 在推送到main或master分支时触发
+    branches: [ release/dev, master ]   # 在推送到main或master分支时触发
   pull_request:
-    branches: [ release/dev, main ] 
+    branches: [ release/dev, master ] 
 
 jobs:
   build:
