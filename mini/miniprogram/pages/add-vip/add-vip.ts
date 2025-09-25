@@ -1,5 +1,4 @@
 // pages/add-vip/add-vip.ts
-import { app } from '../../app';
 import { addVip } from '../../utils/util'
 
 Page({

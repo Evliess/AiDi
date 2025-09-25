@@ -1,5 +1,4 @@
 // pages/charge-vip/charge-vip.ts
-import { app } from '../../app';
 import { addCharge, findVipByPhone } from '../../utils/util'
 Page({
 

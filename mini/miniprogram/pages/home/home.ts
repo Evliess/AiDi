@@ -1,5 +1,4 @@
 // home.ts
-import { app } from '../../app'; 
 Page({
   data: {
     safeTop: 0,

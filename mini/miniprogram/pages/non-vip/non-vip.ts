@@ -1,4 +1,3 @@
-import { app } from '../../app';
 import { nonVipPlay } from '../../utils/util'
 Page({
   data: {
