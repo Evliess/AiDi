@@ -3,6 +3,7 @@ import { app } from '../../app';
 Page({
   data: {
     safeTop: 0,
+    token: "",
   },
   addVip: function(){wx.navigateTo({"url": "/pages/add-vip/add-vip"});},
   addNonVip: function(){wx.navigateTo({"url": "/pages/non-vip/non-vip"});},
@@ -11,9 +12,8 @@ Page({
   viewVip: function() {wx.navigateTo({"url": "/pages/view-vip/view-vip"});},
   viewFin: function() {wx.navigateTo({"url": "/pages/view-fin/view-fin"});},
   onLoad: function() {
-    const safeTop = app.globalData.safeTop;
-    this.setData({
-      safeTop: safeTop
-    });
+    const token = wx.getStorageSync("token");
+    if(token.length>0) this.setData({token: token});
   },
+  
 })

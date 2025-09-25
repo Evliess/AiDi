@@ -30,12 +30,10 @@ Page({
       this.setData({ selectedValue: selectedValue, "user.leftCount": "" });
     }
   },
-  onLoad: function () {
-    const safeTop = app.globalData.safeTop;
+  onShow: function () {
     const openId = wx.getStorageSync("openId");
     const token = wx.getStorageSync("token");
     this.setData({
-      safeTop: safeTop,
       selectedValue: this.data.items[0].value,
       openId: openId,
       token: token,

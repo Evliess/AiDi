@@ -46,14 +46,9 @@ Page({
       wx.showToast({ title: '出错了!', duration: 1000, icon: 'error' });
     }
   },
-  onLoad: function() {
-    const safeTop = app.globalData.safeTop;
+  onShow: function() {
     const openId = wx.getStorageSync("openId");
     const token = wx.getStorageSync("token");
-    this.setData({
-      safeTop: safeTop,
-      openId: openId,
-      token: token,
-    });
+    this.setData({openId: openId,token: token,});
   },
 })

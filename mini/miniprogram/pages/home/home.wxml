@@ -4,7 +4,7 @@
   <view class="title">
     <view>AIDI 后台管理</view>
   </view>
-  <view class="variations">
+  <view class="variations" wx:if="{{token}}">
     <view class="variation-card" bind:tap="addVip">
       <view class="text">新增会员</view>
     </view>

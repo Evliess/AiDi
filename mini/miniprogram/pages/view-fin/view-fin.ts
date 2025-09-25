@@ -61,16 +61,13 @@ Page({
     this.init();
   },
   onReady() {
-    const openId = wx.getStorageSync("openId");
-    const token = wx.getStorageSync("token");
-    this.setData({
-      openId: openId,
-      token: token
-    });
+
   },
 
   onShow() {
-
+    const openId = wx.getStorageSync("openId");
+    const token = wx.getStorageSync("token");
+    this.setData({openId: openId,token: token});
   },
 
   onHide() {

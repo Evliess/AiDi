@@ -130,6 +130,11 @@ Page({
     });
   },
   async onLoad() {
+    
+  },
+
+  onReady() {},
+  async onShow() {
     const openId = wx.getStorageSync("openId");
     const token = wx.getStorageSync("token");
     this.setData({openId: openId, token: token});
@@ -145,9 +150,6 @@ Page({
       wx.showToast({ title: '获取项目失败!', duration: 1000, icon: 'error' });
     }
   },
-
-  onReady() {},
-  onShow() {},
   onHide() {},
   onUnload() {},
   onPullDownRefresh() {},
