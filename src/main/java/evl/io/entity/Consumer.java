@@ -10,8 +10,11 @@ public class Consumer {
     private Long id;
     private String phone;
     private String name;
+    private String memo;
     @Column(name = "left_count")
     private Integer leftCount;
+    @Column(name = "total_count")
+    private Integer totalCount;
     private String type;
     private String expiredAt;
 
@@ -53,6 +56,22 @@ public class Consumer {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getMemo() {
+        return memo;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
+
+    public Integer getTotalCount() {
+        return totalCount;
+    }
+
+    public void setTotalCount(Integer totalCount) {
+        this.totalCount = totalCount;
     }
 
     public String getExpiredAt() {

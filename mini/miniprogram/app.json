@@ -7,7 +7,8 @@
     "pages/charge-vip/charge-vip",
     "pages/play-vip/play-vip",
     "pages/view-vip/view-vip",
-    "pages/view-fin/view-fin"
+    "pages/view-fin/view-fin",
+    "pages/view-all-vip/view-all-vip"
   ],
   "window": {
     "navigationBarTextStyle": "black",

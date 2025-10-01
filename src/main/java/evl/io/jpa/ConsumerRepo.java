@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 @Repository
 public interface ConsumerRepo extends JpaRepository<Consumer, Long> {
@@ -25,5 +27,8 @@ public interface ConsumerRepo extends JpaRepository<Consumer, Long> {
     @Query("UPDATE Consumer a set a.name = :name WHERE a.phone = :phone")
     @Transactional
     void updateNameByPhone(String phone, String name);
+
+    @Query("SELECT a from Consumer a ORDER BY a.leftCount DESC, a.expiredAt DESC")
+    List<Consumer> findAllOrdered();
 
 }

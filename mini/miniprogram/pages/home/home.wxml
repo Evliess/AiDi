@@ -23,5 +23,8 @@
     <view class="variation-card" bind:tap="viewFin">
       <view class="text">财务一览</view>
     </view>
+    <view class="variation-card" bind:tap="viewAllVip">
+      <view class="text">所有会员</view>
+    </view>
   </view>
 </view>

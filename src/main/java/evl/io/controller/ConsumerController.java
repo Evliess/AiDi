@@ -109,4 +109,12 @@ public class ConsumerController {
         if (ValidationUtils.isNotValidPhone(phone)) throw new IllegalArgumentException(ILLEGAL_ARGS_MSG);
         return consumerService.viewVip(phone);
     }
+
+    @Operation(summary = "查询所有会员信息")
+    @GetMapping("/consumer/view-all-ordered")
+    public ResponseEntity<String> findAllOrdered() {
+        return consumerService.findAllOrdered();
+    }
+
+
 }

@@ -40,12 +40,12 @@
       <input type="number" class="form-input" placeholder="请设置剩余次数" bindinput="onLeftCountChange" value="{{user.leftCount}}"></input>
     </view>
     <view class="form-group">
-      <radio-group bindchange="onRadioChange">
+      <checkbox-group bindchange="onRadioChange">
         <label class="form-label" for="type-1">划卡项目</label>
         <label wx:for="{{items}}" wx:key="value">
-          <radio value="{{item.value}}" checked="{{selectedValue === item.value}}" /> {{item.name}}
+          <checkbox value="{{item.value}}" checked="{{item.checked}}" /> {{item.name}}
         </label>
-      </radio-group>
+      </checkbox-group>
     </view>
     <view class="card-buttons">
       <button class="btn btn-primary" style="visibility: hidden;">重置</button>

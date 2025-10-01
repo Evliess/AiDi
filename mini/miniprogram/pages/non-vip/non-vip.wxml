@@ -10,7 +10,7 @@
     </view>
     <view class="form-group">
       <label class="form-label" for="name">消费金额</label>
-      <input type="number" value="{{user.money}}" bindinput="onMoneyChange" class="form-input" placeholder="请输入消费金额"></input>
+      <input type="digit" value="{{user.money}}" bindinput="onMoneyChange" class="form-input" placeholder="请输入消费金额"></input>
     </view>
     <view class="form-group">
       <label class="form-label" for="name">备注</label>

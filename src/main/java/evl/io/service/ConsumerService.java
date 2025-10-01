@@ -178,4 +178,21 @@ public class ConsumerService {
 
         return ResponseEntity.ok(jsonObject.toString());
     }
+
+    public ResponseEntity<String> findAllOrdered() {
+        JSONArray consumers = new JSONArray();
+        List<Consumer> allConsumersOrdered = consumerRepo.findAllOrdered();
+        for (Consumer consumer : allConsumersOrdered) {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("phone", consumer.getPhone());
+            jsonObject.put("name", consumer.getName());
+            jsonObject.put("leftCount", consumer.getLeftCount());
+            jsonObject.put("totalCount", consumer.getTotalCount());
+            jsonObject.put("memo", consumer.getMemo());
+            jsonObject.put("type", consumer.getType());
+            jsonObject.put("expiredAt", consumer.getExpiredAt());
+            consumers.add(jsonObject);
+        }
+        return ResponseEntity.ok(consumers.toString());
+    }
 }

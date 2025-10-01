@@ -5,7 +5,9 @@ CREATE TABLE consumer (
     phone VARCHAR(20) NOT NULL,
     name VARCHAR(50),
     left_count INT DEFAULT 0,
+    total_count INT DEFAULT 0,
     type VARCHAR(20),
+    memo VARCHAR(50),
     expired_at VARCHAR(20)
 );
 CREATE INDEX idx_consumer_phone ON consumer(phone);
