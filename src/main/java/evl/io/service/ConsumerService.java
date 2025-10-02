@@ -18,7 +18,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.time.Instant;
 import java.util.List;
 
 @Service
@@ -40,7 +39,7 @@ public class ConsumerService {
 
     @Transactional
     public ResponseEntity<String> create(String phone, String name, String money, String type
-            , String leftCount, String expiredAt) {
+            , String leftCount, String expiredAt, String chargeAt, String memo) {
         Consumer consumer = consumerRepo.findByPhone(phone);
         JSONObject jsonObject = new JSONObject();
         if (consumer == null) {
@@ -56,17 +55,18 @@ public class ConsumerService {
             consumer.setExpiredAt(expiredAt);
             consumer.setLeftCount(0);
         }
+        consumer.setMemo(memo);
         consumerRepo.save(consumer);
-        createConsumeCharge(phone, money);
+        createConsumeCharge(phone, money, chargeAt);
         jsonObject.put(ServiceConstants.STATUS, ServiceConstants.OK);
         return ResponseEntity.ok(jsonObject.toString());
     }
 
-    private void createConsumeCharge(String phone, String money) {
+    private void createConsumeCharge(String phone, String money, String chargeAt) {
         ConsumerCharge consumerCharge = new ConsumerCharge();
         consumerCharge.setMoney(money);
         consumerCharge.setPhone(phone);
-        consumerCharge.setChargeAt(Instant.now().toEpochMilli());
+        consumerCharge.setChargeAt(DateTimeUtils.dateToMillis(chargeAt));
         consumerChargeRepo.save(consumerCharge);
     }
 

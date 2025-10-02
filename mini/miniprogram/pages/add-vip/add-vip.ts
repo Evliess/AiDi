@@ -1,5 +1,5 @@
 // pages/add-vip/add-vip.ts
-import { addVip } from '../../utils/util'
+import { addVip, getTodayStr } from '../../utils/util'
 
 Page({
   data: {
@@ -17,6 +17,8 @@ Page({
       money: "",
       leftCount: "",
       expiredAt: "",
+      chargeAt: "",
+      memo: "",
     },
     openId: "",
     token: "",
@@ -32,15 +34,21 @@ Page({
   onShow: function () {
     const openId = wx.getStorageSync("openId");
     const token = wx.getStorageSync("token");
+    const todayStr = getTodayStr();
     this.setData({
       selectedValue: this.data.items[0].value,
       openId: openId,
       token: token,
+      "user.chargeAt": todayStr
     });
   },
   onNameChange: function (e: any) {
     const value = e.detail.value;
     if (value !== null && value.length > 0) this.setData({ "user.name": value, });
+  },
+  onChargeAtChange: function (e: any) {
+    const value = e.detail.value;
+    if (value !== null && value.length > 0) this.setData({ "user.chargeAt": value, });
   },
   onPhoneChange: function (e: any) {
     const value = e.detail.value;
@@ -57,6 +65,11 @@ Page({
   onExpiredAtChange: function (e: any) {
     const value = e.detail.value;
     if (value !== null && value.length > 0) this.setData({ "user.expiredAt": value, })
+  },
+
+  onMemoChange: function (e: any) {
+    const value = e.detail.value;
+    if (value !== null && value.length > 0) this.setData({ "user.memo": value, })
   },
 
   async confirm() {
@@ -76,6 +89,8 @@ Page({
       data.type = this.data.selectedValue;
       data.leftCount = this.data.user.leftCount;
       data.expiredAt = this.data.user.expiredAt;
+      data.memo = this.data.user.memo;
+      data.chargeAt = this.data.user.chargeAt;
       const resAddVip = await addVip("/consumers", this.data.openId, this.data.token, data);
       if (resAddVip.status != "ok") {
         wx.showToast({ title: '请检查会员号!', duration: 1000, icon: 'error' });

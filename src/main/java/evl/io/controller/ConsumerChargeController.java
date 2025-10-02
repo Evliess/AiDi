@@ -38,6 +38,7 @@ public class ConsumerChargeController {
                             "leftCount: 10,<br>" +
                             "chargeAt: 2025/10/02" +
                             "expiredAt: 2021/01/11,<br>" +
+                            "memo: memo,<br>" +
                             "phone: 15611112222<br>}")
     })
     @PostMapping("/consumers-charge")

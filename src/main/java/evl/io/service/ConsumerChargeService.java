@@ -56,6 +56,8 @@ public class ConsumerChargeService {
                 consumer.setExpiredAt(expiredAt);
                 consumer.setLeftCount(0);
             }
+            String memo = jsonNode.getString("memo");
+            consumer.setMemo(memo);
             consumerRepo.save(consumer);
             ConsumerCharge consumerCharge = new ConsumerCharge();
             consumerCharge.setMoney(money);

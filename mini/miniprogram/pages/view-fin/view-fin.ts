@@ -1,4 +1,4 @@
-import { viewFin } from '../../utils/util'
+import { viewFin, getTodayStr } from '../../utils/util'
 Page({
 
   data: {
@@ -50,11 +50,7 @@ Page({
   },
 
   init() {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = (today.getMonth() + 1).toString().padStart(2, '0');
-    const day = today.getDate().toString().padStart(2, '0');
-    const currDay = year+"/"+month+"/"+day;
+    const currDay = getTodayStr()
     this.setData({"user.start": currDay, "user.end": currDay});
   },
   onLoad() {

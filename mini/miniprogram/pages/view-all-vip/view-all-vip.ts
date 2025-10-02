@@ -20,7 +20,6 @@ Page({
     try {
       const url = "/consumer/view-all-ordered";
       const viewAllVipOrderedRes = await viewAllVipOrdered(url,this.data.openId, this.data.token);
-      console.log(viewAllVipOrderedRes)
       this.setData({allVipOrdered: viewAllVipOrderedRes});
     } catch(e) {}
   },

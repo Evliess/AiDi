@@ -32,6 +32,7 @@ public class ConsumerController {
                             "money: 998,<br>" +
                             "type: day,<br>" +
                             "leftCount: 10,<br>" +
+                            "memo: memo,<br>" +
                             "expiredAt: 2021/01/11,<br>" +
                             "phone: 15611112222<br>}")
     })
@@ -46,7 +47,9 @@ public class ConsumerController {
         String type = jsonNode.getString("type");
         String leftCount = jsonNode.getString("leftCount");
         String expiredAt = jsonNode.getString("expiredAt");
-        return consumerService.create(phone, name, money, type, leftCount, expiredAt);
+        String memo = jsonNode.getString("memo");
+        String chargeAt = jsonNode.getString("chargeAt");
+        return consumerService.create(phone, name, money, type, leftCount, expiredAt, chargeAt, memo);
     }
 
     @Operation(summary = "根据手机号查找会员")

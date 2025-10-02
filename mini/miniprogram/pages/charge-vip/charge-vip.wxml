@@ -41,7 +41,7 @@
 
     <view class="form-group">
       <label class="form-label" for="round">充值日期</label>
-      <input type="text" class="form-input" placeholder="例如：2025/01/12" bindinput="onChargeAtChange" value="{{user.chargeAt}}"></input>
+      <input type="text" class="form-input" placeholder="例如：" bindinput="onChargeAtChange" value="{{user.chargeAt}}"></input>
     </view>
 
     <view class="form-group">
@@ -58,7 +58,11 @@
     </view>
     <view wx:if="{{selectedValue!='day'}}" class="form-group">
       <label class="form-label" for="round">有效日期</label>
-      <input type="text" class="form-input" placeholder="例如：2025/01/12" bindinput="onExpiredAtChange" value="{{user.expiredAt}}"></input>
+      <input type="text" class="form-input" placeholder="例如：2025/05/25" bindinput="onExpiredAtChange" value="{{user.expiredAt}}"></input>
+    </view>
+    <view class="form-group">
+      <label class="form-label" for="money">备注</label>
+      <input type="text" class="form-input" placeholder="备注" value="{{user.memo}}" bindinput="onMemoChange"></input>
     </view>
     <view class="card-buttons">
       <button class="btn btn-primary" style="visibility: hidden;">重置</button>

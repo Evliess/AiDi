@@ -1,5 +1,5 @@
 // pages/charge-vip/charge-vip.ts
-import { addCharge, findVipByPhone } from '../../utils/util'
+import { addCharge, findVipByPhone, getTodayStr } from '../../utils/util'
 Page({
 
   /**
@@ -30,6 +30,7 @@ Page({
       chargeAt: "",
       oldExpiredAt: "",
       oldChargeAt: "",
+      memo: "",
     }
   },
 
@@ -51,6 +52,7 @@ Page({
       data.leftCount = this.data.user.leftCount;
       data.expiredAt = this.data.user.expiredAt;
       data.chargeAt = this.data.user.chargeAt;
+      data.memo = this.data.user.memo;
       const resAddVip = await addCharge("/consumers-charge", this.data.openId, this.data.token, data);
       if (resAddVip.status != "ok") {
         wx.showToast({ title: '请检查会员号!', duration: 1000, icon: 'error' });
@@ -132,14 +134,20 @@ Page({
       selectedValue: selectedValue
     });
   },
+  onMemoChange: function (e: any) {
+    const value = e.detail.value;
+    if (value !== null && value.length > 0) this.setData({ "user.memo": value, })
+  },
   onLoad: function() {},
   onReady() {
     const openId = wx.getStorageSync("openId");
     const token = wx.getStorageSync("token");
+    const todayStr = getTodayStr();
     this.setData({
       selectedValue: this.data.items[0].value,
       openId: openId,
       token: token,
+      "user.chargeAt": todayStr,
     });
   },
 
