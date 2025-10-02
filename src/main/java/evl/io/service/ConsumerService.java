@@ -191,6 +191,11 @@ public class ConsumerService {
             jsonObject.put("memo", consumer.getMemo());
             jsonObject.put("type", consumer.getType());
             jsonObject.put("expiredAt", consumer.getExpiredAt());
+            List<ConsumerCharge> consumerCharges = consumerChargeRepo.findAllByPhone(consumer.getPhone());
+            if (!consumerCharges.isEmpty()) {
+                jsonObject.put("chargeAt",
+                        DateTimeUtils.convertToFormattedString(consumerCharges.get(0).getChargeAt()));
+            }
             consumers.add(jsonObject);
         }
         return ResponseEntity.ok(consumers.toString());

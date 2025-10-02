@@ -1,2 +1,24 @@
 <!--pages/view-all-vip/view-all-vip.wxml-->
 <navigation-bar></navigation-bar>
+<view class="container" style="padding: 4px;" scroll-y type="custom">
+<view class="card">
+  <view class="form-group" style="margin-top: 6px;" wx:for="{{allVipOrdered}}" wx:key="index">
+      <view><text class="">会员昵称: {{item.name}}</text></view>
+      <view><text class="">会员号: {{item.phone}}</text></view>
+      <view>
+        <text class="">会员类型: <text class="type" wx:if="{{item.type=='day'}}">次卡</text>
+          <text class="type" wx:if="{{item.type=='month'}}">月卡</text>
+          <text class="type" wx:if="{{item.type=='season'}}">季卡</text>
+          <text class="type" wx:if="{{item.type=='year'}}">年卡</text>
+        </text>
+        <text wx:if="{{item.score}}" class="text-class">会员积分: {{item.score}}</text>
+      </view>
+      <view>
+        <text class="">充值日期: {{item.chargeAt}}</text>
+        <text wx:if="{{item.type=='day'}}" class="form-label">剩余次数: {{item.leftCount}}</text>
+        <text wx:if="{{item.type!='day'}}" class="form-label">到期日期: <text class="type">{{item.expiredAt}}</text></text>
+        <label class="form-label dash"></label>
+      </view>
+    </view>
+</view>
+</view>

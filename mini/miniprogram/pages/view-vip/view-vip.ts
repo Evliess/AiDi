@@ -74,10 +74,7 @@ Page({
   onLoad() {
     const openId = wx.getStorageSync("openId");
     const token = wx.getStorageSync("token");
-    this.setData({
-      openId: openId,
-      token: token
-    });
+    this.setData({openId: openId,token: token});
   },
 
   /**
