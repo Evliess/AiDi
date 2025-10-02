@@ -50,6 +50,7 @@ Page({
       this.setData({"user.name":findVipByPhoneRes.name,
       "user.oldChargeAt": findVipByPhoneRes.chargeAt,
       "user.oldType": findVipByPhoneRes.type,
+      "user.phone": findVipByPhoneRes.phone
       });
       if(findVipByPhoneRes.score) {
         this.setData({"user.score": findVipByPhoneRes.score});

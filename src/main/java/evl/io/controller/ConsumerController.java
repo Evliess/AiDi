@@ -58,7 +58,7 @@ public class ConsumerController {
     })
     @GetMapping("/consumer/{phone}")
     public ResponseEntity<String> findByPhone(@PathVariable("phone") String phone) {
-        if (ValidationUtils.isNotValidPhone(phone)) throw new IllegalArgumentException(ILLEGAL_ARGS_MSG);
+//        if (ValidationUtils.isNotValidPhone(phone)) throw new IllegalArgumentException(ILLEGAL_ARGS_MSG);
         return consumerService.findByPhone(phone);
     }
 
@@ -109,7 +109,7 @@ public class ConsumerController {
     })
     @GetMapping("/consumer/view-info/{phone}")
     public ResponseEntity<String> viewVip(@PathVariable("phone") String phone) {
-        if (ValidationUtils.isNotValidPhone(phone)) throw new IllegalArgumentException(ILLEGAL_ARGS_MSG);
+//        if (ValidationUtils.isNotValidPhone(phone)) throw new IllegalArgumentException(ILLEGAL_ARGS_MSG);
         return consumerService.viewVip(phone);
     }
 

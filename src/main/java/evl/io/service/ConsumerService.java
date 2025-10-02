@@ -100,6 +100,9 @@ public class ConsumerService {
 
     private JSONObject _findByPhone(String phone) {
         Consumer consumer = consumerRepo.findByPhone(phone);
+        if (consumer == null) {
+            consumer = consumerRepo.findByName(phone);
+        }
         JSONObject jsonObject = new JSONObject();
         if (consumer == null) {
             jsonObject.put(ServiceConstants.STATUS, ServiceConstants.NG);
@@ -118,7 +121,7 @@ public class ConsumerService {
                 }
                 jsonObject.put("score", score);
             }
-            List<ConsumerCharge> consumerCharges = consumerChargeRepo.findAllByPhone(phone);
+            List<ConsumerCharge> consumerCharges = consumerChargeRepo.findAllByPhone(consumer.getPhone());
             if (!consumerCharges.isEmpty()) {
                 ConsumerCharge consumerCharge = consumerCharges.get(0);
                 jsonObject.put("money", consumerCharge.getMoney());
@@ -152,7 +155,7 @@ public class ConsumerService {
 
     public ResponseEntity<String> viewVip(String phone) {
         JSONObject jsonObject = _findByPhone(phone);
-
+        phone = jsonObject.getString("phone");
         List<ConsumerCharge> consumerChargeList = consumerChargeRepo.findAllByPhone(phone);
         JSONArray chargeLists = new JSONArray();
         BigDecimal total = new BigDecimal("0");

@@ -96,6 +96,7 @@ Page({
       }
       this.setData({
         "user.name": findVipByPhoneRes.name,
+        "user.phone": findVipByPhoneRes.phone,
         "user.oldChargeAt": findVipByPhoneRes.chargeAt,
         "user.oldType": findVipByPhoneRes.type,
       });
