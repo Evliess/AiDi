@@ -1,7 +1,13 @@
 <!--pages/view-all-vip/view-all-vip.wxml-->
 <navigation-bar></navigation-bar>
 <view class="container" style="padding: 4px;" scroll-y type="custom">
+  <view class="title">
+    <view>AIDI 会员概览</view>
+  </view>
 <view class="card">
+  <view class="card-header">
+      <p class="card-title">会员概览</p>
+    </view>
   <view class="form-group" style="margin-top: 6px;" wx:for="{{allVipOrdered}}" wx:key="index">
       <view><text class="">会员昵称: {{item.name}}</text></view>
       <view><text class="">会员号: {{item.phone}}</text></view>
