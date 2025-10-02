@@ -36,6 +36,7 @@ public class ConsumerChargeController {
                             "money: 998,<br>" +
                             "type: day,<br>" +
                             "leftCount: 10,<br>" +
+                            "chargeAt: 2025/10/02" +
                             "expiredAt: 2021/01/11,<br>" +
                             "phone: 15611112222<br>}")
     })

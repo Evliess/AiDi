@@ -27,6 +27,7 @@ Page({
       leftCount: "",
       oldLeftCount: "",
       expiredAt: "",
+      chargeAt: "",
       oldExpiredAt: "",
       oldChargeAt: "",
     }
@@ -49,6 +50,7 @@ Page({
       data.type = this.data.selectedValue;
       data.leftCount = this.data.user.leftCount;
       data.expiredAt = this.data.user.expiredAt;
+      data.chargeAt = this.data.user.chargeAt;
       const resAddVip = await addCharge("/consumers-charge", this.data.openId, this.data.token, data);
       if (resAddVip.status != "ok") {
         wx.showToast({ title: '请检查会员号!', duration: 1000, icon: 'error' });
@@ -119,6 +121,10 @@ Page({
   onExpiredAtChange: function (e: any) {
     const value = e.detail.value;
     if (value !== null && value.length > 0) this.setData({ "user.expiredAt": value, })
+  },
+  onChargeAtChange: function (e: any) {
+    const value = e.detail.value;
+    if (value !== null && value.length > 0) this.setData({ "user.chargeAt": value, })
   },
   onRadioChange: function(e: any) {
     const selectedValue = e.detail.value;

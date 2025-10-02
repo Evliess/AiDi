@@ -36,7 +36,12 @@
     </view>
     <view class="form-group">
       <label class="form-label" for="money">充值金额</label>
-      <input type="number" class="form-input" placeholder="请输入充值金额" bindinput="onMoneyChange" value="{{user.money}}"></input>
+      <input type="digit" class="form-input" placeholder="请输入充值金额" bindinput="onMoneyChange" value="{{user.money}}"></input>
+    </view>
+
+    <view class="form-group">
+      <label class="form-label" for="round">充值日期</label>
+      <input type="text" class="form-input" placeholder="例如：2025/01/12" bindinput="onChargeAtChange" value="{{user.chargeAt}}"></input>
     </view>
 
     <view class="form-group">
@@ -53,7 +58,7 @@
     </view>
     <view wx:if="{{selectedValue!='day'}}" class="form-group">
       <label class="form-label" for="round">有效日期</label>
-      <input type="text" class="form-input" placeholder="请输入有效日期" bindinput="onExpiredAtChange" value="{{user.expiredAt}}"></input>
+      <input type="text" class="form-input" placeholder="例如：2025/01/12" bindinput="onExpiredAtChange" value="{{user.expiredAt}}"></input>
     </view>
     <view class="card-buttons">
       <button class="btn btn-primary" style="visibility: hidden;">重置</button>

@@ -16,7 +16,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.time.Instant;
 import java.util.List;
 
 import static evl.io.controller.ConsumerController.ILLEGAL_ARGS_MSG;
@@ -61,7 +60,8 @@ public class ConsumerChargeService {
             ConsumerCharge consumerCharge = new ConsumerCharge();
             consumerCharge.setMoney(money);
             consumerCharge.setPhone(phone);
-            consumerCharge.setChargeAt(Instant.now().toEpochMilli());
+            String chargeAt = jsonNode.getString("chargeAt");
+            consumerCharge.setChargeAt(DateTimeUtils.dateToMillis(chargeAt));
             consumerChargeRepo.save(consumerCharge);
             jsonObject.put(ServiceConstants.STATUS, ServiceConstants.OK);
         }
