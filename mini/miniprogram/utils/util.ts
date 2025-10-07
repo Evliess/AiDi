@@ -76,7 +76,7 @@ export const login = (url: string, data:any) => request_public<any>({url: url, m
 
 export const viewAllVipOrdered = (url: string, openId: string, token: string) => request<any>({url: url, method: 'GET', header: {'content-type': 'application/json', 'X-token': token, 'X-openId': openId}});
 
-export const updateByPhone = (url: string, openId: string, token: string, type: string, leftCount: string, expiredAt: string) => request<any>({url: url, method: 'PUT', data: {"type": type, "leftCount":leftCount, "expiredAt":expiredAt}, header: {'content-type': 'application/json', 'X-token': token, 'X-openId': openId}});
+export const updateByPhone = (url: string, openId: string, token: string, data: any) => request<any>({url: url, method: 'PUT', data: data, header: {'content-type': 'application/json', 'X-token': token, 'X-openId': openId}});
 
 export const getTodayStr = () => {
   const today = new Date();
