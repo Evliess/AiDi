@@ -89,18 +89,20 @@ public class ConsumerController {
             @Parameter(name = "phone", description = "手机号", example = "15611112222"),
             @Parameter(name = "body",
                     description = "{<br>" +
-                            "type: day,<br>" +
+                            "memo: memo,<br>" +
+                            "score: 10,<br>" +
                             "leftCount: 10,<br>" +
                             "expiredAt: 2000/01/19<br>}")
     })
-    @PutMapping("/consumer/{phone}/")
+    @PutMapping("/consumer/{phone}")
     public ResponseEntity<String> updateByPhone(@PathVariable("phone") String phone, @RequestBody String body) {
         if (ValidationUtils.isNotValidPhone(phone)) throw new IllegalArgumentException(ILLEGAL_ARGS_MSG);
         JSONObject jsonNode = JSON.parseObject(body);
-        String type = jsonNode.getString("type");
+        String memo = jsonNode.getString("memo");
         String leftCount = jsonNode.getString("leftCount");
         String expiredAt = jsonNode.getString("expiredAt");
-        return consumerService.updateByPhone(phone, leftCount, type, expiredAt);
+        String score = jsonNode.getString("score");
+        return consumerService.updateByPhone(phone, leftCount, memo, expiredAt, score);
     }
 
     @Operation(summary = "根据手机号查看会员基本信息，充值记录，消费记录")

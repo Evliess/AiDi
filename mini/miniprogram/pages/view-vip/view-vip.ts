@@ -1,6 +1,5 @@
-import { viewVip } from '../../utils/util'
+import { viewVip, updateByPhone } from '../../utils/util'
 Page({
-
   data: {
     openId: "",
     token: "",
@@ -10,6 +9,7 @@ Page({
       money: "",
       type: "",
       score: "",
+      oldScore: "",
       chineseType: "",
       oldType: "",
       leftCount: "",
@@ -17,6 +17,8 @@ Page({
       expiredAt: "",
       oldExpiredAt: "",
       oldChargeAt: "",
+      oldMemo: "",
+      memo: "",
     },
     playLists: [],
     chargeList: [],
@@ -50,12 +52,13 @@ Page({
       this.setData({"user.name":findVipByPhoneRes.name,
       "user.oldChargeAt": findVipByPhoneRes.chargeAt,
       "user.oldType": findVipByPhoneRes.type,
-      "user.phone": findVipByPhoneRes.phone
+      "user.phone": findVipByPhoneRes.phone,
+      "user.oldMemo": findVipByPhoneRes.memo,
       });
       if(findVipByPhoneRes.score) {
-        this.setData({"user.score": findVipByPhoneRes.score});
+        this.setData({"user.oldScore": findVipByPhoneRes.score});
       } else {
-        this.setData({"user.score": null});
+        this.setData({"user.oldScore": null});
       }
       if(findVipByPhoneRes.type=="day") this.setData({"user.chineseType": "次卡"});
       if(findVipByPhoneRes.type=="month") this.setData({"user.chineseType": "月卡"});
@@ -69,6 +72,43 @@ Page({
       this.setData({"playLists": findVipByPhoneRes.playLists, "chargeLists": findVipByPhoneRes.chargeLists, "chargeTotal": findVipByPhoneRes.chargeTotal});
     } catch(e) {
       wx.showToast({ title: '请检查会员号!', duration: 1000, icon: 'error' });
+      return;
+    }
+  },
+
+  onMemoChange(e: any) {
+    const value = e.detail.value;
+    if (value !== null && value.length > 0) this.setData({ "user.memo": value, });
+  },
+
+  onLeftCountChange(e: any) {
+    const value = e.detail.value;
+    if (value !== null && value.length > 0) this.setData({ "user.leftCount": value, });
+  },
+
+  onExpiredAt(e: any){
+    const value = e.detail.value;
+    if (value !== null && value.length > 0) this.setData({ "user.expiredAt": value, });
+  },
+
+  onScoreChange(e: any) {
+    const value = e.detail.value;
+    if (value !== null && value.length > 0) this.setData({ "user.score": value, });
+  },
+
+  async update() {
+    try{
+      const url =  "/consumer/" + this.data.user.phone;
+      const data:any = {};
+      data.memo = this.data.user.memo;
+      data.score = this.data.user.score;
+      data.leftCount = this.data.user.leftCount;
+      data.expiredAt = this.data.user.expiredAt;
+      await updateByPhone(url, this.data.openId,
+         this.data.token, data);
+         wx.showToast({ title: '更新成功!', duration: 1000, icon: 'success' });
+    } catch(e) {
+      wx.showToast({ title: '更新失败!', duration: 1000, icon: 'error' });
       return;
     }
   },

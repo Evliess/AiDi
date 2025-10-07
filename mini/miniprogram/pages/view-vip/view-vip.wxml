@@ -18,11 +18,10 @@
       <button class="btn btn-primary" bind:tap="clearData">重置</button>
     </view>
     <view wx:if="{{user.name}}" class="form-group" style="margin-top: 6px;">
-      <view>
-        <text class="">会员昵称: {{user.name}}</text>
-        <text class="text-class">会员类型: <text class="type">{{user.chineseType}}</text></text>
-        <text wx:if="{{user.score}}" class="text-class">会员积分: {{user.score}}</text>
-      </view>
+      <view><text>会员昵称: {{user.name}}</text></view>
+      <view><text>会员类型: <text class="type">{{user.chineseType}}</text></text></view>
+      <view><text wx:if="{{user.oldScore}}">会员积分: {{user.oldScore}}</text></view>
+      <text wx:if="{{user.oldMemo}}">备忘: {{user.oldMemo}}</text>
       <view>
         <text class="">充值日期: {{user.oldChargeAt}}</text>
         <text wx:if="{{user.oldType=='day'}}" class="form-label">剩余次数: {{user.oldLeftCount}}</text>
@@ -30,6 +29,31 @@
       </view>
     </view>
   </view>
+
+<view class="card">
+  <view class="card-header"><p class="card-title">修改信息</p></view>
+  <view class="form-group" wx:if="{{user.oldScore}}">
+      <label class="form-label">剩余次数</label>
+      <input type="text" class="form-input" placeholder="请输入剩余次数" bindinput="onLeftCountChange" value="{{user.leftCount}}"></input>
+  </view>
+  <view class="form-group" wx:if="{{user.oldScore}}">
+      <label class="form-label">积分</label>
+      <input type="text" class="form-input" placeholder="请输入积分" bindinput="onScoreChange" value="{{user.score}}"></input>
+  </view>
+  <view class="form-group" wx:if="{{user.oldType!='day'}}">
+      <label class="form-label">到期日期</label>
+      <input type="text" class="form-input" placeholder="如: 2025/10/01" bindinput="onExpiredAt" value="{{user.expiredAt}}"></input>
+  </view>
+  <view class="form-group">
+      <label class="form-label">备注</label>
+      <input type="text" class="form-input" placeholder="请输入备注" bindinput="onMemoChange" value="{{user.memo}}"></input>
+  </view>
+  <view class="card-buttons">
+      <button class="btn btn-outline" bind:tap="update">更新</button>
+      <button class="btn btn-primary" bind:tap="clearData">重置</button>
+    </view>
+</view>
+
   <view class="card">
     <view class="card-header">
       <p class="card-title">充值记录</p>

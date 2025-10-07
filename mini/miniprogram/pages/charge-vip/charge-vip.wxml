@@ -18,11 +18,12 @@
       <button class="btn btn-primary" bind:tap="clearData">重置</button>
     </view>
     <view wx:if="{{user.name}}" class="form-group" style="margin-top: 6px;">
+      <view><text class="">会员昵称: {{user.name}}</text></view>
       <view>
-        <text class="">会员昵称: {{user.name}}</text>
-        <text class="text-class">会员类型: <text class="type">{{user.chineseType}}</text></text>
-        <text wx:if="{{user.score}}" class="text-class">会员积分: {{user.score}}</text>
+        <text>会员类型: <text class="type">{{user.chineseType}}</text></text>
       </view>
+      <view><text wx:if="{{user.score}}">会员积分: {{user.score}}</text></view>
+      <view><text wx:if="{{user.oldMemo}}">备忘: {{user.oldMemo}}</text></view>
       <view>
         <text class="">充值日期: {{user.oldChargeAt}}</text>
         <text wx:if="{{user.oldType=='day'}}" class="form-label">剩余次数: {{user.oldLeftCount}}</text>

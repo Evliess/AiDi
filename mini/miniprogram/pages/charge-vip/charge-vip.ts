@@ -31,6 +31,7 @@ Page({
       oldExpiredAt: "",
       oldChargeAt: "",
       memo: "",
+      oldMemo: "",
     }
   },
 
@@ -87,6 +88,7 @@ Page({
       "user.oldChargeAt": findVipByPhoneRes.chargeAt,
       "user.oldType": findVipByPhoneRes.type,
       "user.phone": findVipByPhoneRes.phone,
+      "user.oldMemo": findVipByPhoneRes.memo,
       });
       if(findVipByPhoneRes.score) {
         this.setData({"user.score": findVipByPhoneRes.score});

@@ -108,10 +108,12 @@ public class ConsumerService {
             jsonObject.put(ServiceConstants.STATUS, ServiceConstants.NG);
             jsonObject.put(ServiceConstants.MESSAGE, CONSUMER_NOT_EXIST);
         } else {
-            jsonObject.put("phone", consumer.getPhone());
+            phone = consumer.getPhone();
+            jsonObject.put("phone", phone);
             jsonObject.put("name", consumer.getName());
             jsonObject.put("leftCount", consumer.getLeftCount());
             jsonObject.put("type", consumer.getType());
+            jsonObject.put("memo", consumer.getMemo());
             jsonObject.put("expiredAt", consumer.getExpiredAt());
             ConsumerScore consumerScore = consumerScoreRepo.findByPhone(phone);
             if (consumerScore != null) {
@@ -137,16 +139,21 @@ public class ConsumerService {
         return ResponseEntity.ok(jsonObject.toString());
     }
 
-    public ResponseEntity<String> updateByPhone(String phone, String leftCount, String type, String expiredAt) {
+    public ResponseEntity<String> updateByPhone(String phone, String leftCount, String memo, String expiredAt, String score) {
         Consumer consumer = consumerRepo.findByPhone(phone);
         JSONObject jsonObject = new JSONObject();
         if (consumer == null) {
             jsonObject.put(ServiceConstants.STATUS, ServiceConstants.NG);
             jsonObject.put(ServiceConstants.MESSAGE, CONSUMER_NOT_EXIST);
         } else {
-            if (ValidationUtils.isNotBlank(type)) consumer.setType(type);
+            if (ValidationUtils.isNotBlank(memo)) consumer.setMemo(memo);
             if (ValidationUtils.isNotBlank(leftCount)) consumer.setLeftCount(Integer.parseInt(leftCount));
             if (ValidationUtils.isNotBlank(expiredAt)) consumer.setExpiredAt(expiredAt);
+            if (ValidationUtils.isNotBlank(score)) {
+                ConsumerScore consumerScore = consumerScoreRepo.findByPhone(phone);
+                consumerScore.setScore(score);
+                consumerScoreRepo.save(consumerScore);
+            }
             consumerRepo.save(consumer);
             jsonObject.put(ServiceConstants.STATUS, ServiceConstants.OK);
         }
