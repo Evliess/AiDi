@@ -139,7 +139,8 @@ public class ConsumerService {
         return ResponseEntity.ok(jsonObject.toString());
     }
 
-    public ResponseEntity<String> updateByPhone(String phone, String leftCount, String memo, String expiredAt, String score) {
+    public ResponseEntity<String> updateByPhone(String phone, String leftCount, String memo, String expiredAt,
+                                                String score, String name) {
         Consumer consumer = consumerRepo.findByPhone(phone);
         JSONObject jsonObject = new JSONObject();
         if (consumer == null) {
@@ -147,6 +148,7 @@ public class ConsumerService {
             jsonObject.put(ServiceConstants.MESSAGE, CONSUMER_NOT_EXIST);
         } else {
             if (ValidationUtils.isNotBlank(memo)) consumer.setMemo(memo);
+            if (ValidationUtils.isNotBlank(name)) consumer.setName(name);
             if (ValidationUtils.isNotBlank(leftCount)) consumer.setLeftCount(Integer.parseInt(leftCount));
             if (ValidationUtils.isNotBlank(expiredAt)) consumer.setExpiredAt(expiredAt);
             if (ValidationUtils.isNotBlank(score)) {

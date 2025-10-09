@@ -40,7 +40,7 @@
     </view>
     <view wx:if="{{selectedValue!='day'}}" class="form-group">
       <label class="form-label" for="round">有效日期</label>
-      <input type="text" class="form-input" placeholder="请输入有效日期" value="{{user.expiredAt}}" bindinput="onExpiredAtChange"></input>
+      <input type="text" class="form-input" placeholder="如：2025/05/22" value="{{user.expiredAt}}" bindinput="onExpiredAtChange"></input>
     </view>
     <view class="form-group">
       <label class="form-label" for="money">备注</label>

@@ -4,6 +4,7 @@ Page({
     openId: "",
     token: "",
     user: {
+      oldName: "",
       name: "",
       phone: "",
       money: "",
@@ -30,6 +31,11 @@ Page({
     if (value !== null && value.length > 0) this.setData({ "user.phone": value, });
   },
 
+  onNameChange: function (e: any) {
+    const value = e.detail.value;
+    if (value !== null && value.length > 0) this.setData({ "user.name": value, });
+  },
+
   clearData: function () {
     const userInfo: any = this.data.user;
     const newUserInfo: any = {};
@@ -45,11 +51,11 @@ Page({
       const url = "/consumer/view-info/" + this.data.user.phone;
       const findVipByPhoneRes = await viewVip(url, this.data.openId, this.data.token);
       if(findVipByPhoneRes.status=="ng") {
-        this.setData({"user.name": null, playLists:[], chargeLists:[]});
+        this.setData({"user.oldName": null, playLists:[], chargeLists:[]});
         wx.showToast({ title: findVipByPhoneRes.message, duration: 1000, icon: 'error' });
         return;
       }
-      this.setData({"user.name":findVipByPhoneRes.name,
+      this.setData({"user.oldName":findVipByPhoneRes.name,
       "user.oldChargeAt": findVipByPhoneRes.chargeAt,
       "user.oldType": findVipByPhoneRes.type,
       "user.phone": findVipByPhoneRes.phone,
@@ -104,6 +110,7 @@ Page({
       data.score = this.data.user.score;
       data.leftCount = this.data.user.leftCount;
       data.expiredAt = this.data.user.expiredAt;
+      data.name = this.data.user.name;
       await updateByPhone(url, this.data.openId,
          this.data.token, data);
          wx.showToast({ title: '更新成功!', duration: 1000, icon: 'success' });

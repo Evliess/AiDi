@@ -99,10 +99,11 @@ public class ConsumerController {
         if (ValidationUtils.isNotValidPhone(phone)) throw new IllegalArgumentException(ILLEGAL_ARGS_MSG);
         JSONObject jsonNode = JSON.parseObject(body);
         String memo = jsonNode.getString("memo");
+        String name = jsonNode.getString("name");
         String leftCount = jsonNode.getString("leftCount");
         String expiredAt = jsonNode.getString("expiredAt");
         String score = jsonNode.getString("score");
-        return consumerService.updateByPhone(phone, leftCount, memo, expiredAt, score);
+        return consumerService.updateByPhone(phone, leftCount, memo, expiredAt, score, name);
     }
 
     @Operation(summary = "根据手机号查看会员基本信息，充值记录，消费记录")
