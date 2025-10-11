@@ -66,7 +66,11 @@ public class ConsumerService {
         ConsumerCharge consumerCharge = new ConsumerCharge();
         consumerCharge.setMoney(money);
         consumerCharge.setPhone(phone);
-        consumerCharge.setChargeAt(DateTimeUtils.dateToMillis(chargeAt));
+        if (ValidationUtils.isBlank(chargeAt) || chargeAt.length() != 10) {
+            consumerCharge.setChargeAt(null);
+        } else {
+            consumerCharge.setChargeAt(DateTimeUtils.dateToMillis(chargeAt));
+        }
         consumerChargeRepo.save(consumerCharge);
     }
 
@@ -127,7 +131,7 @@ public class ConsumerService {
             if (!consumerCharges.isEmpty()) {
                 ConsumerCharge consumerCharge = consumerCharges.get(0);
                 jsonObject.put("money", consumerCharge.getMoney());
-                jsonObject.put("chargeAt", DateTimeUtils.convertToFormattedString(consumerCharge.getChargeAt()));
+                jsonObject.put("chargeAt", DateTimeUtils.convertToFormattedStringDate(consumerCharge.getChargeAt()));
             }
             jsonObject.put(ServiceConstants.STATUS, ServiceConstants.OK);
         }
@@ -172,7 +176,7 @@ public class ConsumerService {
             JSONObject chargeObject = new JSONObject();
             chargeObject.put("money", consumerCharge.getMoney());
             total = total.add(new BigDecimal(consumerCharge.getMoney()));
-            chargeObject.put("chargeAt", DateTimeUtils.convertToFormattedString(consumerCharge.getChargeAt()));
+            chargeObject.put("chargeAt", DateTimeUtils.convertToFormattedStringDate(consumerCharge.getChargeAt()));
             chargeLists.add(chargeObject);
         }
         jsonObject.put("chargeLists", chargeLists);
@@ -183,7 +187,7 @@ public class ConsumerService {
         for (ConsumerPlay consumerPlay : consumerPlayList) {
             JSONObject playObject = new JSONObject();
             playObject.put("item", consumerPlay.getItemName());
-            playObject.put("consumedAt", DateTimeUtils.convertToFormattedString(consumerPlay.getConsumeAt()));
+            playObject.put("consumedAt", DateTimeUtils.convertToFormattedStringDateTime(consumerPlay.getConsumeAt()));
             playLists.add(playObject);
         }
         jsonObject.put("playLists", playLists);
@@ -206,7 +210,7 @@ public class ConsumerService {
             List<ConsumerCharge> consumerCharges = consumerChargeRepo.findAllByPhone(consumer.getPhone());
             if (!consumerCharges.isEmpty()) {
                 jsonObject.put("chargeAt",
-                        DateTimeUtils.convertToFormattedString(consumerCharges.get(0).getChargeAt()));
+                        DateTimeUtils.convertToFormattedStringDate(consumerCharges.get(0).getChargeAt()));
             }
             consumers.add(jsonObject);
         }

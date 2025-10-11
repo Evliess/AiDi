@@ -42,7 +42,7 @@ public class HistoryPlayService {
             JSONObject obj = new JSONObject();
             obj.put("itemName", c.getItemName());
             obj.put("money", c.getMoney());
-            obj.put("consumeAt", DateTimeUtils.convertToFormattedString(c.getConsumeAt()));
+            obj.put("consumeAt", DateTimeUtils.convertToFormattedStringDateTime(c.getConsumeAt()));
             jsonObject.add(obj);
         }
         return ResponseEntity.ok(jsonObject.toString());

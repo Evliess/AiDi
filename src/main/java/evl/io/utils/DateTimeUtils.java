@@ -8,11 +8,20 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class DateTimeUtils {
-    public static String convertToFormattedString(long epochMilli) {
+    public static String convertToFormattedString(Long epochMilli, String pattern) {
+        if (epochMilli == null) return "N/A";
         Instant instant = Instant.ofEpochMilli(epochMilli);
         LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         return localDateTime.format(formatter);
+    }
+
+    public static String convertToFormattedStringDateTime(Long epochMilli) {
+        return convertToFormattedString(epochMilli, "yyyy/MM/dd HH:mm:ss");
+    }
+
+    public static String convertToFormattedStringDate(Long epochMilli) {
+        return convertToFormattedString(epochMilli, "yyyy/MM/dd");
     }
 
     public static long dateToMillisPlus1Day(String dateString) {

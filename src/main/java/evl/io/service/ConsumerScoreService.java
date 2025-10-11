@@ -60,7 +60,7 @@ public class ConsumerScoreService {
             jsonObject.put("consumeAt", -1);
         } else {
             jsonObject.put("score", consumerScore.getScore());
-            jsonObject.put("consumeAt", DateTimeUtils.convertToFormattedString(consumerScore.getConsumeAt()));
+            jsonObject.put("consumeAt", DateTimeUtils.convertToFormattedStringDateTime(consumerScore.getConsumeAt()));
         }
         jsonObject.put(ServiceConstants.STATUS, ServiceConstants.OK);
         return ResponseEntity.ok(jsonObject.toString());

@@ -63,7 +63,11 @@ public class ConsumerChargeService {
             consumerCharge.setMoney(money);
             consumerCharge.setPhone(phone);
             String chargeAt = jsonNode.getString("chargeAt");
-            consumerCharge.setChargeAt(DateTimeUtils.dateToMillis(chargeAt));
+            if (ValidationUtils.isBlank(chargeAt) || chargeAt.length() != 10) {
+                consumerCharge.setChargeAt(null);
+            } else {
+                consumerCharge.setChargeAt(DateTimeUtils.dateToMillis(chargeAt));
+            }
             consumerChargeRepo.save(consumerCharge);
             jsonObject.put(ServiceConstants.STATUS, ServiceConstants.OK);
         }
@@ -77,7 +81,7 @@ public class ConsumerChargeService {
         for (ConsumerCharge c : list) {
             JSONObject obj = new JSONObject();
             obj.put("money", c.getMoney());
-            obj.put("chargeAt", DateTimeUtils.convertToFormattedString(c.getChargeAt()));
+            obj.put("chargeAt", DateTimeUtils.convertToFormattedStringDate(c.getChargeAt()));
             jsonObject.add(obj);
         }
         return ResponseEntity.ok(jsonObject.toString());

@@ -60,7 +60,7 @@ public class ConsumerPlayService {
             obj.put("itemName", c.getItemName());
             obj.put("name", consumerRepo.findByPhone(phone).getName());
             obj.put("phone", c.getPhone());
-            obj.put("consumeAt", DateTimeUtils.convertToFormattedString(c.getConsumeAt()));
+            obj.put("consumeAt", DateTimeUtils.convertToFormattedStringDateTime(c.getConsumeAt()));
             jsonObject.add(obj);
         }
         return ResponseEntity.ok(jsonObject.toString());
