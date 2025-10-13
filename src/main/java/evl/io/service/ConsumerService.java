@@ -203,8 +203,6 @@ public class ConsumerService {
             jsonObject.put("phone", consumer.getPhone());
             jsonObject.put("name", consumer.getName());
             jsonObject.put("leftCount", consumer.getLeftCount());
-            jsonObject.put("totalCount", consumer.getTotalCount());
-            jsonObject.put("memo", consumer.getMemo());
             jsonObject.put("type", consumer.getType());
             jsonObject.put("expiredAt", consumer.getExpiredAt());
             List<ConsumerCharge> consumerCharges = consumerChargeRepo.findAllByPhone(consumer.getPhone());
@@ -212,8 +210,16 @@ public class ConsumerService {
                 jsonObject.put("chargeAt",
                         DateTimeUtils.convertToFormattedStringDate(consumerCharges.get(0).getChargeAt()));
             }
+            List<ConsumerPlay> consumerPlayList = consumerPlayRepo.findAllByPhone(consumer.getPhone());
+            if (consumerPlayList == null || consumerPlayList.isEmpty()) {
+                jsonObject.put("lastPlayAt", "");
+            } else {
+                ConsumerPlay consumerPlay = consumerPlayList.get(0);
+                jsonObject.put("lastPlayAt", DateTimeUtils.convertToFormattedStringDate(consumerPlay.getConsumeAt()));
+            }
             consumers.add(jsonObject);
         }
+        consumers = ValidationUtils.sortWithNullHandling(consumers, "lastPlayAt", false);
         return ResponseEntity.ok(consumers.toString());
     }
 }

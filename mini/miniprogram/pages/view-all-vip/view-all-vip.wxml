@@ -8,21 +8,22 @@
   <view class="card-header">
       <p class="card-title">会员概览</p>
     </view>
-  <view class="form-group" style="margin-top: 6px;" wx:for="{{allVipOrdered}}" wx:key="index">
-      <view><text class="">会员昵称: {{item.name}}</text></view>
-      <view><text class="">会员号: {{item.phone}}</text></view>
+  <view class="form-group" style="margin-top: 6px;" wx:for="{{allVipOrdered}}" wx:key="index" user-select>
+      <view><text user-select>会员昵称: {{item.name}}</text></view>
+      <view><text user-select>会员号: {{item.phone}}</text></view>
+      <view><text user-select>最近划卡: {{item.lastPlayAt}}</text></view>
       <view>
-        <text class="">会员类型: <text class="type" wx:if="{{item.type=='day'}}">次卡</text>
-          <text class="type" wx:if="{{item.type=='month'}}">月卡</text>
-          <text class="type" wx:if="{{item.type=='season'}}">季卡</text>
-          <text class="type" wx:if="{{item.type=='year'}}">年卡</text>
+        <text user-select>会员类型: <text class="type" wx:if="{{item.type=='day'}}">次卡</text>
+          <text class="type" wx:if="{{item.type=='month'}}" user-select>月卡</text>
+          <text class="type" wx:if="{{item.type=='season'}}" user-select>季卡</text>
+          <text class="type" wx:if="{{item.type=='year'}}" user-select>年卡</text>
         </text>
-        <text wx:if="{{item.score}}" class="text-class">会员积分: {{item.score}}</text>
+        <text wx:if="{{item.score}}" class="text-class" user-select>会员积分: {{item.score}}</text>
       </view>
       <view>
-        <text class="">充值日期: {{item.chargeAt}}</text>
-        <text wx:if="{{item.type=='day'}}" class="form-label">剩余次数: {{item.leftCount}}</text>
-        <text wx:if="{{item.type!='day'}}" class="form-label">到期日期: <text class="type">{{item.expiredAt}}</text></text>
+        <text user-select>充值日期: {{item.chargeAt}}</text>
+        <text wx:if="{{item.type=='day'}}" class="form-label" user-select>剩余次数: {{item.leftCount}}</text>
+        <text wx:if="{{item.type!='day'}}" class="form-label" user-select>到期日期: <text class="type" user-select>{{item.expiredAt}}</text></text>
         <label class="form-label dash"></label>
       </view>
     </view>
