@@ -56,12 +56,12 @@ Page({
       data.memo = this.data.user.memo;
       const resAddVip = await addCharge("/consumers-charge", this.data.openId, this.data.token, data);
       if (resAddVip.status != "ok") {
-        wx.showToast({ title: '请检查会员号!', duration: 1000, icon: 'error' });
+        wx.navigateTo({"url": "/pages/alert-page/alert-page?res=fail&msg=请检查会员号!&from=charge-vip"});
         return;
       }
-      wx.showToast({ title: '充值成功!', duration: 1000, icon: 'success' });
+      wx.navigateTo({"url": "/pages/alert-page/alert-page?res=success&msg=充值成功!&from=charge-vip"});
     } catch (e) {
-      wx.showToast({ title: '请检查会员号!', duration: 1000, icon: 'error' });
+      wx.navigateTo({"url": "/pages/alert-page/alert-page?res=fail&msg=请检查会员号!&from=charge-vip"});
       return;
     }
   },

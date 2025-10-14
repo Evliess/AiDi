@@ -55,9 +55,9 @@ Page({
       data.score = this.data.user.score;
       await updateScoreByPhone(url, this.data.openId, this.data.token, data);
       this.setData({"user.oldScore": this.data.user.score});
-      wx.showToast({ title: "成功!", duration: 1000, icon: 'success' });
+      wx.navigateTo({"url": "/pages/alert-page/alert-page?res=success&msg=积分修改成功!&from=play-vip"});
     } catch(e) {
-      wx.showToast({ title: "出错!", duration: 1000, icon: 'error' });
+      wx.navigateTo({"url": "/pages/alert-page/alert-page?res=fail&msg=积分修改失败!&from=play-vip"});
     }
   },
   async play() {
@@ -68,9 +68,9 @@ Page({
       const url = "/consumer/left-count/"+this.data.user.phone+"/"+this.data.user.leftCount;
       this.setData({"user.oldLeftCount":this.data.user.leftCount});
       await updateLeftCountByPhone(url, this.data.openId, this.data.token);
-      wx.showToast({ title: "划卡成功!", duration: 1000, icon: 'success' });
+      wx.navigateTo({"url": "/pages/alert-page/alert-page?res=success&msg=划卡成功!&from=play-vip"});
     } catch(e) {
-      wx.showToast({ title: "划卡失败！", duration: 1000, icon: 'error' });
+      wx.navigateTo({"url": "/pages/alert-page/alert-page?res=fail&msg=划卡失败!&from=play-vip"});
       return;
     }
     try {

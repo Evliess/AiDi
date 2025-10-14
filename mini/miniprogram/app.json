@@ -8,7 +8,8 @@
     "pages/play-vip/play-vip",
     "pages/view-vip/view-vip",
     "pages/view-fin/view-fin",
-    "pages/view-all-vip/view-all-vip"
+    "pages/view-all-vip/view-all-vip",
+    "pages/alert-page/alert-page"
   ],
   "window": {
     "navigationBarTextStyle": "black",

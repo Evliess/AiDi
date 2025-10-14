@@ -1,0 +1,17 @@
+<!--pages/alert-page/alert-page.wxml-->
+<navigation-bar></navigation-bar>
+<view class="container" style="padding: 4px;" scroll-y type="custom">
+  <view class="card">
+    <view class="card-header">
+      <p class="card-title"></p>
+    </view>
+    <view class="form-group msg-group">
+      <label wx:if="{{res=='success'}}" class='success'>{{msg}}</label>
+      <label wx:else class='fail'>{{msg}}</label>
+    </view>
+    <view class="card-buttons">
+      <button class="btn btn-outline" bind:tap="continue">{{label}}</button>
+      <button class="btn btn-primary" bind:tap="backHome">返回首页</button>
+    </view>
+  </view>
+</view>
