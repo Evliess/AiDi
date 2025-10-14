@@ -15,8 +15,8 @@ public interface ConsumerRepo extends JpaRepository<Consumer, Long> {
     @Query("SELECT a from Consumer a WHERE a.phone= :phone")
     Consumer findByPhone(String phone);
 
-    @Query("SELECT a from Consumer a WHERE a.name= :name")
-    Consumer findByName(String name);
+    @Query("SELECT a FROM Consumer a WHERE a.name LIKE CONCAT('%', :name, '%')")
+    List<Consumer> findByName(String name);
 
     @Query("SELECT a.name from Consumer a WHERE a.phone= :phone")
     String findNameByPhone(String phone);

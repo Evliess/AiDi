@@ -22,7 +22,8 @@ import java.util.List;
 
 @Service
 public class ConsumerService {
-    public static final String CONSUMER_NOT_EXIST = "会员不存在！";
+    public static final String CONSUMER_NOT_EXIST = "会员不存在!";
+    public static final String CONSUMER_NOT_UNIQUE = "找到多个会员!";
     private final ConsumerRepo consumerRepo;
     private final ConsumerScoreRepo consumerScoreRepo;
     private final ConsumerChargeRepo consumerChargeRepo;
@@ -104,10 +105,19 @@ public class ConsumerService {
 
     private JSONObject _findByPhone(String phone) {
         Consumer consumer = consumerRepo.findByPhone(phone);
-        if (consumer == null) {
-            consumer = consumerRepo.findByName(phone);
-        }
         JSONObject jsonObject = new JSONObject();
+        if (consumer == null) {
+            List<Consumer> consumerList = consumerRepo.findByName(phone);
+            if (consumerList != null && !consumerList.isEmpty()) {
+                if (consumerList.size() == 1) {
+                    consumer = consumerList.get(0);
+                } else {
+                    jsonObject.put(ServiceConstants.STATUS, ServiceConstants.NG);
+                    jsonObject.put(ServiceConstants.MESSAGE, CONSUMER_NOT_UNIQUE);
+                    return jsonObject;
+                }
+            }
+        }
         if (consumer == null) {
             jsonObject.put(ServiceConstants.STATUS, ServiceConstants.NG);
             jsonObject.put(ServiceConstants.MESSAGE, CONSUMER_NOT_EXIST);
