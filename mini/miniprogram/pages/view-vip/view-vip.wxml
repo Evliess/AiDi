@@ -27,14 +27,19 @@
         <text wx:if="{{user.oldType=='day'}}" class="form-label">剩余次数: {{user.oldLeftCount}}</text>
         <text wx:if="{{user.oldType!='day'}}" class="form-label">到期日期: <text class="type">{{user.oldExpiredAt}}</text></text>
       </view>
+      <button class="btn btn-outline" bind:tap="toggleUpdate">修改</button>
     </view>
   </view>
 
-<view class="card">
+<view class="card" wx:if="{{isUpdate}}">
   <view class="card-header"><p class="card-title">修改信息</p></view>
   <view class="form-group">
       <label class="form-label">昵称</label>
       <input type="text" class="form-input" placeholder="请输入昵称" bindinput="onNameChange" value="{{user.name}}"></input>
+  </view>
+  <view class="form-group">
+      <label class="form-label">新手机号</label>
+      <input type="text" class="form-input" placeholder="请输入新手机号" bindinput="onNewPhoneChange" value="{{user.newPhone}}"></input>
   </view>
   <view class="form-group" wx:if="{{user.oldLeftCount}}">
       <label class="form-label">剩余次数</label>

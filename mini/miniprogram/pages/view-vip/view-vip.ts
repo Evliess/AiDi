@@ -3,10 +3,12 @@ Page({
   data: {
     openId: "",
     token: "",
+    isUpdate: false,
     user: {
       oldName: "",
       name: "",
       phone: "",
+      newPhone: "",
       money: "",
       type: "",
       score: "",
@@ -26,6 +28,14 @@ Page({
     chargeTotal:"",
   },
 
+  toggleUpdate: function(){
+    const isUpdate = !this.data.isUpdate;
+    this.setData({"isUpdate": isUpdate});
+  },
+  onNewPhoneChange: function(e: any){
+    const value = e.detail.value;
+    if (value !== null && value.length > 0) this.setData({ "user.newPhone": value, });
+  },
   onPhoneChange: function (e: any) {
     const value = e.detail.value;
     if (value !== null && value.length > 0) this.setData({ "user.phone": value, });
@@ -111,6 +121,7 @@ Page({
       data.leftCount = this.data.user.leftCount;
       data.expiredAt = this.data.user.expiredAt;
       data.name = this.data.user.name;
+      data.newPhone = this.data.user.newPhone;
       await updateByPhone(url, this.data.openId,
          this.data.token, data);
          wx.showToast({ title: '更新成功!', duration: 1000, icon: 'success' });

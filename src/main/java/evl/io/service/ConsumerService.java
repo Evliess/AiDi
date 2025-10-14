@@ -154,7 +154,7 @@ public class ConsumerService {
     }
 
     public ResponseEntity<String> updateByPhone(String phone, String leftCount, String memo, String expiredAt,
-                                                String score, String name) {
+                                                String score, String name, String newPhone) {
         Consumer consumer = consumerRepo.findByPhone(phone);
         JSONObject jsonObject = new JSONObject();
         if (consumer == null) {
@@ -169,6 +169,18 @@ public class ConsumerService {
                 ConsumerScore consumerScore = consumerScoreRepo.findByPhone(phone);
                 consumerScore.setScore(score);
                 consumerScoreRepo.save(consumerScore);
+            }
+            if (ValidationUtils.isNotBlank(newPhone)) {
+                //update consumer
+                consumer.setPhone(newPhone);
+                //update consumer score
+                ConsumerScore consumerScore = consumerScoreRepo.findByPhone(phone);
+                consumerScore.setPhone(newPhone);
+                consumerScoreRepo.save(consumerScore);
+                //update consumer play
+                consumerPlayRepo.updatePhoneByNewPhone(phone, newPhone);
+                //update consumer charge
+                consumerChargeRepo.updatePhoneByNewPhone(phone, newPhone);
             }
             consumerRepo.save(consumer);
             jsonObject.put(ServiceConstants.STATUS, ServiceConstants.OK);
