@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <navigation-bar></navigation-bar>
-<view class="container" style="padding: 4px;" scroll-y type="custom">
+<view class="container"   scroll-y type="custom">
   <view class="title">
     <view>AIDI 管理系统</view>
   </view>

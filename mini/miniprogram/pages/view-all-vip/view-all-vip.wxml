@@ -1,6 +1,6 @@
 <!--pages/view-all-vip/view-all-vip.wxml-->
 <navigation-bar></navigation-bar>
-<view class="container" style="padding: 4px;" scroll-y type="custom">
+<view class="container"   scroll-y type="custom">
   <view class="title">
     <view>AIDI 会员概览</view>
   </view>

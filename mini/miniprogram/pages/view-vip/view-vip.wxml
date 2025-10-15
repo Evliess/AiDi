@@ -14,8 +14,8 @@
       <input type="text" class="form-input" placeholder="请输入会员号或昵称" bindinput="onPhoneChange" value="{{user.phone}}"></input>
     </view>
     <view class="card-buttons">
-      <button class="btn btn-outline" bind:tap="find">查找</button>
-      <button class="btn btn-primary" bind:tap="clearData">重置</button>
+      <button class="btn btn-primary" bind:tap="find">查找</button>
+      <button class="btn btn-outline" bind:tap="clearData">重置</button>
     </view>
     <view wx:if="{{user.oldName}}" class="form-group" style="margin-top: 6px;">
       <view><text>会员昵称: {{user.oldName}}</text></view>

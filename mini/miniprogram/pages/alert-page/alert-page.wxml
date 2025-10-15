@@ -1,6 +1,6 @@
 <!--pages/alert-page/alert-page.wxml-->
 <navigation-bar></navigation-bar>
-<view class="container" style="padding: 4px;" scroll-y type="custom">
+<view class="container"   scroll-y type="custom">
   <view class="card">
     <view class="card-header">
       <p class="card-title"></p>

@@ -1,6 +1,6 @@
 <!--pages/add-vip/add-vip.wxml-->
 <navigation-bar></navigation-bar>
-<view class="container" style="padding: 4px;" scroll-y type="custom">
+<view class="container"   scroll-y type="custom">
   <view class="title">
     <view>AIDI 会员划卡</view>
   </view>
@@ -26,8 +26,8 @@
       </view>
     </view>
     <view class="card-buttons">
-      <button class="btn btn-primary" style="visibility: hidden;">重置</button>
-      <button class="btn btn-outline" bind:tap="find">查找</button>
+      <button class="btn btn-outline" style="visibility: hidden;">重置</button>
+      <button class="btn btn-primary" bind:tap="find">查找</button>
     </view>
   </view>
 
@@ -48,8 +48,8 @@
       </checkbox-group>
     </view>
     <view class="card-buttons">
-      <button class="btn btn-primary" style="visibility: hidden;">重置</button>
-      <button class="btn btn-outline" bind:tap="play">划卡</button>
+      <button class="btn btn-outline" style="visibility: hidden;">重置</button>
+      <button class="btn btn-primary" bind:tap="play">划卡</button>
     </view>
   </view>
 
@@ -62,8 +62,8 @@
       <input type="number" class="form-input" placeholder="请设置积分" bindinput="onScoreChange" value="{{user.score}}"></input>
     </view>
     <view class="card-buttons">
-      <button class="btn btn-primary" style="visibility: hidden;">重置</button>
-      <button class="btn btn-outline" bind:tap="score">修改积分</button>
+      <button class="btn btn-outline" style="visibility: hidden;">重置</button>
+      <button class="btn btn-primary" bind:tap="score">修改积分</button>
     </view>
   </view>
 

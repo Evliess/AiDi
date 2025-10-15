@@ -1,6 +1,7 @@
 const app = getApp()
 Component({
-  properties: {},
+  properties: {
+  },
   data: {
     navBarHeight: app.globalData.navBarHeight,
     menuRight: app.globalData.menuRight,
