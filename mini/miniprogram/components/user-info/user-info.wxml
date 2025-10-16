@@ -1,0 +1,13 @@
+<!--components/user-info/user-info.wxml-->
+  <view class="form-group" style="margin-top: 6px;">
+    <view><text user-select>会员昵称: {{jsonData.name}}</text></view>
+    <view><text user-select>会员号: {{jsonData.phone}}</text></view>
+    <view><text user-select>会员类型: <text class="type">{{jsonData.chineseType}}</text></text></view>
+    <view><text user-select wx:if="{{jsonData.score}}">会员积分: {{jsonData.score}}</text></view>
+    <view><text user-select wx:if="{{jsonData.oldMemo}}">备忘: {{jsonData.oldMemo}}</text></view>
+    <view><text user-select>充值日期: {{jsonData.oldChargeAt}}</text></view>
+    <view>
+      <text user-select wx:if="{{jsonData.oldType=='day'}}">剩余次数: {{jsonData.oldLeftCount}}</text>
+      <text user-select wx:if="{{jsonData.oldType!='day'}}">到期日期: <text class="type">{{jsonData.oldExpiredAt}}</text></text>
+    </view>
+  </view>

@@ -13,18 +13,7 @@
       <label class="form-label" for="phone">会员号或昵称</label>
       <input type="text" class="form-input" placeholder="请输入会员号或昵称" value="{{user.phone}}"bindinput="onPhoneChange"></input>
     </view>
-    <view wx:if="{{user.name}}" class="form-group" style="margin-top: 6px;">
-      <view>
-        <text class="">会员昵称: {{user.name}}</text>
-        <text class="text-class">会员类型: <text class="type">{{user.chineseType}}</text></text>
-        <text wx:if="{{user.oldScore}}" class="text-class">会员积分: {{user.oldScore}}</text>
-      </view>
-      <view>
-        <text class="">充值日期: {{user.oldChargeAt}}</text>
-        <text wx:if="{{user.oldType=='day'}}" class="form-label">结余次数: {{user.oldLeftCount}}</text>
-        <text wx:if="{{user.oldType!='day'}}" class="form-label">到期日期: <text class="type">{{user.oldExpiredAt}}</text></text>
-      </view>
-    </view>
+    <user-info wx:if="{{user.name}}" jsonData="{{user}}"></user-info>
     <view class="card-buttons">
       <button class="btn btn-outline" style="visibility: hidden;">重置</button>
       <button class="btn btn-primary" bind:tap="find">查找</button>

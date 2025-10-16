@@ -22,10 +22,10 @@
       <view><text>会员类型: <text class="type">{{user.chineseType}}</text></text></view>
       <view><text wx:if="{{user.oldScore}}">会员积分: {{user.oldScore}}</text></view>
       <text wx:if="{{user.oldMemo}}">备忘: {{user.oldMemo}}</text>
+      <view><text class="">充值日期: {{user.oldChargeAt}}</text></view>
       <view>
-        <text class="">充值日期: {{user.oldChargeAt}}</text>
-        <text wx:if="{{user.oldType=='day'}}" class="form-label">剩余次数: {{user.oldLeftCount}}</text>
-        <text wx:if="{{user.oldType!='day'}}" class="form-label">到期日期: <text class="type">{{user.oldExpiredAt}}</text></text>
+        <text wx:if="{{user.oldType=='day'}}" >剩余次数: {{user.oldLeftCount}}</text>
+        <text wx:if="{{user.oldType!='day'}}" >到期日期: <text class="type">{{user.oldExpiredAt}}</text></text>
       </view>
       <button class="btn btn-outline" bind:tap="toggleUpdate">修改</button>
     </view>
