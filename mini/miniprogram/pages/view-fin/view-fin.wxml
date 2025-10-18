@@ -12,14 +12,14 @@
     <view class="form-group">
       <label class="form-label">开始日期</label>
       <picker mode="date" value="{{user.start}}" start="2024/09/01" end="2027/12/31" bindchange="onStartChange">
-        <input type="text" class="form-input" value="{{user.start}}"></input>
+        <input type="text" class="form-input" value="{{user.start}}" disabled="true"></input>
       </picker>
     </view>
 
     <view class="form-group">
       <label class="form-label">结束日期</label>
       <picker mode="date" value="{{user.end}}" start="2024/09/01" end="2027/12/31" bindchange="onEndChange">
-        <input type="text" class="form-input" value="{{user.end}}"></input>
+        <input type="text" class="form-input" value="{{user.end}}" disabled="true"></input>
       </picker>
     </view>
     <view class="card-buttons">

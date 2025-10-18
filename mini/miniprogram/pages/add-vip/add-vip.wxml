@@ -24,7 +24,7 @@
     <view class="form-group">
       <label class="form-label">充值日期</label>
       <picker mode="date" value="{{user.chargeAt}}" start="2024/09/01" end="2027/12/31" bindchange="onChargeAtChange">
-        <input type="text" class="form-input" value="{{user.chargeAt}}"></input>
+        <input type="text" class="form-input" value="{{user.chargeAt}}" disabled="true"></input>
       </picker>
     </view>
 
