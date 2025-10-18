@@ -8,13 +8,19 @@
     <view class="card-header">
       <p class="card-title">财务一览</p>
     </view>
+
     <view class="form-group">
-      <label class="form-label" for="name">开始日期</label>
-      <input type="text" value="{{user.start}}" bindinput="onStartChange" class="form-input" placeholder="开始日期"></input>
+      <label class="form-label">开始日期</label>
+      <picker mode="date" value="{{user.start}}" start="2024/09/01" end="2027/12/31" bindchange="onStartChange">
+        <input type="text" class="form-input" value="{{user.start}}"></input>
+      </picker>
     </view>
+
     <view class="form-group">
-      <label class="form-label" for="name">结束日期</label>
-      <input type="text" value="{{user.end}}" bindinput="onEndChange" class="form-input" placeholder="结束日期"></input>
+      <label class="form-label">结束日期</label>
+      <picker mode="date" value="{{user.end}}" start="2024/09/01" end="2027/12/31" bindchange="onEndChange">
+        <input type="text" class="form-input" value="{{user.end}}"></input>
+      </picker>
     </view>
     <view class="card-buttons">
       <button class="btn btn-primary" bind:tap="confirm">确认</button>

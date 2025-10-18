@@ -40,13 +40,19 @@ Page({
   },
 
   onStartChange: function (e: any) {
-    const value = e.detail.value;
-    if (value !== null && value.length > 0) this.setData({ "user.start": value, });
+    let value = e.detail.value;
+    if (value !== null && value.length > 0) {
+      value = value.replaceAll("-","/");
+      this.setData({ "user.start": value, });
+    }
   },
 
   onEndChange: function (e: any) {
-    const value = e.detail.value;
-    if (value !== null && value.length > 0) this.setData({ "user.end": value, });
+    let value = e.detail.value;
+    if (value !== null && value.length > 0) {
+      value = value.replaceAll("-","/");
+      this.setData({ "user.end": value, });
+    }
   },
 
   init() {

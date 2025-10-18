@@ -128,8 +128,11 @@ Page({
     if (value !== null && value.length > 0) this.setData({ "user.expiredAt": value, })
   },
   onChargeAtChange: function (e: any) {
-    const value = e.detail.value;
-    if (value !== null && value.length > 0) this.setData({ "user.chargeAt": value, })
+    let value = e.detail.value;
+    if (value !== null && value.length > 0) {
+      value = value.replaceAll("-","/");
+      this.setData({ "user.chargeAt": value, });
+    }
   },
   onRadioChange: function(e: any) {
     const selectedValue = e.detail.value;

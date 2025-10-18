@@ -19,7 +19,6 @@ Page({
     this.from = options.from;
     this.data.res = options.res;
     this.data.msg = options.msg;
-    console.log(options);
     let tmp = "";
     if(this.from=="add-vip") tmp = "继续添加";
     if(this.from=="charge-vip") tmp = "继续充值";
