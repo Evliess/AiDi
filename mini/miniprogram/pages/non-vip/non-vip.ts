@@ -40,9 +40,9 @@ Page({
     data.itemName = this.data.user.itemName;
     try {
       await nonVipPlay(url, this.data.openId, this.data.token, data);
-      wx.showToast({ title: '成功!',   duration: 4000, icon: 'success' });
+      wx.showToast({ title: '成功!',    duration: 3000, icon: 'success' });
     } catch(e) {
-      wx.showToast({ title: '出错了!',   duration: 4000, icon: 'error' });
+      wx.showToast({ title: '出错了!',    duration: 3000, icon: 'error' });
     }
   },
   onShow: function() {

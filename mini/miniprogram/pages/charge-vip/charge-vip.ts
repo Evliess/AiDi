@@ -40,12 +40,12 @@ Page({
       const data:any = {};
       data.phone = this.data.user.phone;
       if(!data.phone) {
-        wx.showToast({ title: '请检查会员号!',   duration: 4000, icon: 'error' });
+        wx.showToast({ title: '请检查会员号!',    duration: 3000, icon: 'error' });
         return;
       }
       data.money = this.data.user.money;
       if(!data.money) {
-        wx.showToast({ title: '请检查金额!',   duration: 4000, icon: 'error' });
+        wx.showToast({ title: '请检查金额!',    duration: 3000, icon: 'error' });
         return;
       }
       data.name = this.data.user.name;
@@ -81,7 +81,7 @@ Page({
       const findVipByPhoneRes = await findVipByPhone(url, this.data.openId, this.data.token);
       if(findVipByPhoneRes.status=="ng") {
         this.setData({"user.name": null});
-        wx.showToast({ title: findVipByPhoneRes.message,   duration: 4000, icon: 'error' });
+        wx.showToast({ title: findVipByPhoneRes.message,    duration: 3000, icon: 'error' });
         return;
       }
       this.setData({"user.name":findVipByPhoneRes.name,
@@ -106,7 +106,7 @@ Page({
       }
     } catch(e) {
       console.error(e);
-      wx.showToast({ title: '请检查会员号!',   duration: 4000, icon: 'error' });
+      wx.showToast({ title: '请检查会员号!',    duration: 3000, icon: 'error' });
       return;
     }
   },

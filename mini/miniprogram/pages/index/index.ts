@@ -21,7 +21,7 @@ Page({
         wx.setStorageSync("token", null);
       }
     } catch(e) {
-      wx.showToast({ title: '登录失败!',   duration: 4000, icon: 'error' });
+      wx.showToast({ title: '登录失败!',    duration: 3000, icon: 'error' });
     }
   },
   clearData: function() {

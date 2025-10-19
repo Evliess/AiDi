@@ -65,9 +65,9 @@ Page({
                 const newList = this.data.chargeLists.filter((item:any) => item.chargeId !== id);
                 const newTotal = (Number(this.data.chargeTotal) - Number(money)) + "";
                 this.setData({chargeLists: newList, chargeTotal: newTotal});
-                wx.showToast({ title: '删除成功!',   duration: 4000, icon: 'success' });
+                wx.showToast({ title: '删除成功!',    duration: 3000, icon: 'success' });
               } else {
-                wx.showToast({ title: '删除失败!',   duration: 4000, icon: 'error' });
+                wx.showToast({ title: '删除失败!',    duration: 3000, icon: 'error' });
               }
             }
           );
@@ -91,7 +91,7 @@ Page({
       const findVipByPhoneRes = await viewVip(url, this.data.openId, this.data.token);
       if(findVipByPhoneRes.status=="ng") {
         this.setData({"user.oldName": null, playLists:[], chargeLists:[]});
-        wx.showToast({ title: findVipByPhoneRes.message,   duration: 4000, icon: 'error' });
+        wx.showToast({ title: findVipByPhoneRes.message,    duration: 3000, icon: 'error' });
         return;
       }
       this.setData({"user.oldName":findVipByPhoneRes.name,
@@ -116,7 +116,7 @@ Page({
       }
       this.setData({"playLists": findVipByPhoneRes.playLists, "chargeLists": findVipByPhoneRes.chargeLists, "chargeTotal": findVipByPhoneRes.chargeTotal});
     } catch(e) {
-      wx.showToast({ title: '请检查会员号!',   duration: 4000, icon: 'error' });
+      wx.showToast({ title: '请检查会员号!',    duration: 3000, icon: 'error' });
       return;
     }
   },
@@ -153,9 +153,9 @@ Page({
       data.newPhone = this.data.user.newPhone;
       await updateByPhone(url, this.data.openId,
          this.data.token, data);
-         wx.showToast({ title: '更新成功!',   duration: 4000, icon: 'success' });
+         wx.showToast({ title: '更新成功!',    duration: 3000, icon: 'success' });
     } catch(e) {
-      wx.showToast({ title: '更新失败!',   duration: 4000, icon: 'error' });
+      wx.showToast({ title: '更新失败!',    duration: 3000, icon: 'error' });
       return;
     }
   },
