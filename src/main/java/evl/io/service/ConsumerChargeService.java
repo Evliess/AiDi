@@ -86,4 +86,15 @@ public class ConsumerChargeService {
         }
         return ResponseEntity.ok(jsonObject.toString());
     }
+
+    public ResponseEntity<String> deleteById(Long id) {
+        JSONObject obj = new JSONObject();
+        try {
+            consumerChargeRepo.deleteById(id);
+            obj.put(ServiceConstants.STATUS, ServiceConstants.OK);
+        } catch (Exception e) {
+            obj.put(ServiceConstants.STATUS, ServiceConstants.NG);
+        }
+        return ResponseEntity.ok(obj.toString());
+    }
 }

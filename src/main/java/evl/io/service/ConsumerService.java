@@ -199,6 +199,7 @@ public class ConsumerService {
             chargeObject.put("money", consumerCharge.getMoney());
             total = total.add(new BigDecimal(consumerCharge.getMoney()));
             chargeObject.put("chargeAt", DateTimeUtils.convertToFormattedStringDate(consumerCharge.getChargeAt()));
+            chargeObject.put("chargeId", consumerCharge.getId());
             chargeLists.add(chargeObject);
         }
         jsonObject.put("chargeLists", chargeLists);

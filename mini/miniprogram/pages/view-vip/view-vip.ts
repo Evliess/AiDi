@@ -1,4 +1,4 @@
-import { viewVip, updateByPhone } from '../../utils/util'
+import { viewVip, updateByPhone, deleteChargeRecordById } from '../../utils/util'
 Page({
   data: {
     openId: "",
@@ -24,7 +24,7 @@ Page({
       memo: "",
     },
     playLists: [],
-    chargeList: [],
+    chargeLists: [],
     chargeTotal:"",
   },
 
@@ -45,7 +45,36 @@ Page({
     const value = e.detail.value;
     if (value !== null && value.length > 0) this.setData({ "user.name": value, });
   },
-
+  delChargeById(e: any) {
+    const money = e.currentTarget.dataset.money;
+    const chargeat = e.currentTarget.dataset.chargeat;
+    const id = e.currentTarget.dataset.id;
+    wx.showModal({
+      title: '删除确认',           
+      content: "金额: " + money + " ，日期: " + chargeat, 
+      confirmText: '删除',         
+      cancelText: '再想想',        
+      confirmColor: '#ff4444',     
+      cancelColor: '#999999',
+      success: (res) => {
+        if (res.confirm) {
+          const url = "/consumers-charge/" + id;
+          deleteChargeRecordById(url, this.data.openId, this.data.token).then(
+            (res)=> {
+              if(res.status=="ok") {
+                const newList = this.data.chargeLists.filter((item:any) => item.chargeId !== id);
+                const newTotal = (Number(this.data.chargeTotal) - Number(money)) + "";
+                this.setData({chargeLists: newList, chargeTotal: newTotal});
+                wx.showToast({ title: '删除成功!',   duration: 4000, icon: 'success' });
+              } else {
+                wx.showToast({ title: '删除失败!',   duration: 4000, icon: 'error' });
+              }
+            }
+          );
+        }
+      }
+    })
+  },
   clearData: function () {
     const userInfo: any = this.data.user;
     const newUserInfo: any = {};
@@ -62,7 +91,7 @@ Page({
       const findVipByPhoneRes = await viewVip(url, this.data.openId, this.data.token);
       if(findVipByPhoneRes.status=="ng") {
         this.setData({"user.oldName": null, playLists:[], chargeLists:[]});
-        wx.showToast({ title: findVipByPhoneRes.message, duration: 1000, icon: 'error' });
+        wx.showToast({ title: findVipByPhoneRes.message,   duration: 4000, icon: 'error' });
         return;
       }
       this.setData({"user.oldName":findVipByPhoneRes.name,
@@ -87,7 +116,7 @@ Page({
       }
       this.setData({"playLists": findVipByPhoneRes.playLists, "chargeLists": findVipByPhoneRes.chargeLists, "chargeTotal": findVipByPhoneRes.chargeTotal});
     } catch(e) {
-      wx.showToast({ title: '请检查会员号!', duration: 1000, icon: 'error' });
+      wx.showToast({ title: '请检查会员号!',   duration: 4000, icon: 'error' });
       return;
     }
   },
@@ -124,9 +153,9 @@ Page({
       data.newPhone = this.data.user.newPhone;
       await updateByPhone(url, this.data.openId,
          this.data.token, data);
-         wx.showToast({ title: '更新成功!', duration: 1000, icon: 'success' });
+         wx.showToast({ title: '更新成功!',   duration: 4000, icon: 'success' });
     } catch(e) {
-      wx.showToast({ title: '更新失败!', duration: 1000, icon: 'error' });
+      wx.showToast({ title: '更新失败!',   duration: 4000, icon: 'error' });
       return;
     }
   },

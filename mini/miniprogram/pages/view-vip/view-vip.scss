@@ -1,1 +1,29 @@
 /* pages/view-vip/view-vip.wxss */
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+.item-content {
+  flex: 1;
+}
+
+.item-id {
+  display: block;
+  font-size: 14px;
+  color: rgb(95, 99, 104);
+  margin-bottom: 10rpx;
+}
+
+.item-name {
+  display: block;
+  font-size: 16px;
+  color: #ffd36d;;
+}

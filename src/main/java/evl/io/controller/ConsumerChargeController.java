@@ -63,4 +63,13 @@ public class ConsumerChargeController {
         return consumerChargeService.findByPhone(phone);
     }
 
+    @Operation(summary = "根据ID删除充值记录")
+    @Parameters({
+            @Parameter(name = "id", description = "id", example = "1"),
+    })
+    @DeleteMapping("/consumers-charge/{id}")
+    public ResponseEntity<String> deleteById(@PathVariable("id") Long id) {
+        return consumerChargeService.deleteById(id);
+    }
+
 }

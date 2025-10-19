@@ -24,7 +24,7 @@ Page({
       const viewFinRes = await viewFin(url, this.data.openId, this.data.token, data);
       this.setData({"chargeList": viewFinRes.chargeList, "historyList": viewFinRes.historyList, "total": viewFinRes.total})
     } catch(e) {
-      wx.showToast({ title: '检查日期格式!', duration: 1000, icon: 'error' });
+      wx.showToast({ title: '检查日期格式!',   duration: 4000, icon: 'error' });
     }
   },
   clearData: function () {

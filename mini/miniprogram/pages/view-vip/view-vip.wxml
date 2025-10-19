@@ -1,6 +1,6 @@
 <!--pages/add-vip/add-vip.wxml-->
 <navigation-bar></navigation-bar>
-<scroll-view class="container" style="padding: 4px 4px 5vh 4px;" scroll-y type="custom">
+<view class="container" style="padding: 4px 4px 5vh 4px;" scroll-y type="custom">
   <view class="title">
     <view>AIDI 会员信息</view>
   </view>
@@ -24,44 +24,46 @@
       <text wx:if="{{user.oldMemo}}">备忘: {{user.oldMemo}}</text>
       <view><text class="">充值日期: {{user.oldChargeAt}}</text></view>
       <view>
-        <text wx:if="{{user.oldType=='day'}}" >剩余次数: {{user.oldLeftCount}}</text>
-        <text wx:if="{{user.oldType!='day'}}" >到期日期: <text class="type">{{user.oldExpiredAt}}</text></text>
+        <text wx:if="{{user.oldType=='day'}}">剩余次数: {{user.oldLeftCount}}</text>
+        <text wx:if="{{user.oldType!='day'}}">到期日期: <text class="type">{{user.oldExpiredAt}}</text></text>
       </view>
       <button class="btn btn-outline" bind:tap="toggleUpdate">修改</button>
     </view>
   </view>
 
-<view class="card" wx:if="{{isUpdate}}">
-  <view class="card-header"><p class="card-title">修改信息</p></view>
-  <view class="form-group">
+  <view class="card" wx:if="{{isUpdate}}">
+    <view class="card-header">
+      <p class="card-title">修改信息</p>
+    </view>
+    <view class="form-group">
       <label class="form-label">昵称</label>
       <input type="text" class="form-input" placeholder="请输入昵称" bindinput="onNameChange" value="{{user.name}}"></input>
-  </view>
-  <view class="form-group">
+    </view>
+    <view class="form-group">
       <label class="form-label">新手机号</label>
       <input type="text" class="form-input" placeholder="请输入新手机号" bindinput="onNewPhoneChange" value="{{user.newPhone}}"></input>
-  </view>
-  <view class="form-group" wx:if="{{user.oldLeftCount}}">
+    </view>
+    <view class="form-group" wx:if="{{user.oldLeftCount}}">
       <label class="form-label">剩余次数</label>
       <input type="text" class="form-input" placeholder="请输入剩余次数" bindinput="onLeftCountChange" value="{{user.leftCount}}"></input>
-  </view>
-  <view class="form-group">
+    </view>
+    <view class="form-group">
       <label class="form-label">积分</label>
       <input type="text" class="form-input" placeholder="请输入积分" bindinput="onScoreChange" value="{{user.score}}"></input>
-  </view>
-  <view class="form-group" wx:if="{{user.oldType!='day'}}">
+    </view>
+    <view class="form-group" wx:if="{{user.oldType!='day'}}">
       <label class="form-label">到期日期</label>
       <input type="text" class="form-input" placeholder="如: 2025/10/01" bindinput="onExpiredAt" value="{{user.expiredAt}}"></input>
-  </view>
-  <view class="form-group">
+    </view>
+    <view class="form-group">
       <label class="form-label">备注</label>
       <input type="text" class="form-input" placeholder="请输入备注" bindinput="onMemoChange" value="{{user.memo}}"></input>
-  </view>
-  <view class="card-buttons">
+    </view>
+    <view class="card-buttons">
       <button class="btn btn-outline" bind:tap="update">更新</button>
       <button class="btn btn-primary" bind:tap="clearData">重置</button>
     </view>
-</view>
+  </view>
 
   <view class="card">
     <view class="card-header">
@@ -70,19 +72,23 @@
     <view class="form-group" wx:if="{{chargeLists.length>0}}">
       <label class="form-label total">合计：{{chargeTotal}}</label>
       <label class="form-label dash"></label>
-      <label wx:for="{{chargeLists}}" wx:key="index" class="form-label">
-    <text class="money">{{item.money}}</text> <text class="float-right">{{item.chargeAt}}</text></label>
+      <view class="list-item" wx:for="{{chargeLists}}" wx:key="id">
+        <view class="item-content">
+          <label class="item-name">{{item.money}}</label>
+          <label class="item-id">{{item.chargeAt}}</label>
+        </view>
+        <button class="btn btn-delete" data-id="{{item.chargeId}}" data-money="{{item.money}}" data-chargeat="{{item.chargeAt}}" bind:tap="delChargeById">删除</button>
+      </view>
     </view>
   </view>
-
   <view class="card">
     <view class="card-header">
       <p class="card-title">消费记录</p>
     </view>
     <view class="form-group" wx:if="{{chargeLists.length>0}}">
       <label wx:for="{{playLists}}" wx:key="index" class="form-label">
-      {{item.item}} <text class="float-right">{{item.consumedAt}}</text></label>
+        {{item.item}} <text class="float-right">{{item.consumedAt}}</text></label>
     </view>
   </view>
 
-</scroll-view>
+</view>

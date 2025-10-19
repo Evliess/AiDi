@@ -81,12 +81,12 @@ Page({
       const data:any = {};
       data.phone = this.data.user.phone;
       if(!data.phone) {
-        wx.showToast({ title: '请检查会员号!', duration: 1000, icon: 'error' });
+        wx.showToast({ title: '请检查会员号!', duration: 3000, icon: 'error' });
         return;
       }
       data.money = this.data.user.money;
       if(!data.money) {
-        wx.showToast({ title: '请检查金额!', duration: 1000, icon: 'error' });
+        wx.showToast({ title: '请检查金额!',   duration: 4000, icon: 'error' });
         return;
       }
       data.name = this.data.user.name;
@@ -97,7 +97,7 @@ Page({
       data.chargeAt = this.data.user.chargeAt;
       const resAddVip = await addVip("/consumers", this.data.openId, this.data.token, data);
       if (resAddVip.status != "ok") {
-        wx.showToast({ title: '请检查会员号!', duration: 1000, icon: 'error' });
+        wx.showToast({ title: '请检查会员号!',   duration: 4000, icon: 'error' });
         return;
       }
       wx.navigateTo({"url": "/pages/alert-page/alert-page?res=success&msg=添加成功！&from=add-vip"});
