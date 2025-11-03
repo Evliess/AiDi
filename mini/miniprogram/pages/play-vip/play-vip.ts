@@ -1,7 +1,6 @@
 import { updateLeftCountByPhone, updateScoreByPhone,
   findVipByPhone, findPlayItems,addVipPlay } from '../../utils/util'
 Page({
-
   data: {
     items:[],
     selectedValue: "",
@@ -53,6 +52,10 @@ Page({
       const data: any = {};
       data.phone = this.data.user.phone;
       data.score = this.data.user.score;
+      if(!data.score) {
+        wx.showToast({ title: "请设置积分！", duration: 3000, icon: 'error' });
+        return;
+      }
       await updateScoreByPhone(url, this.data.openId, this.data.token, data);
       this.setData({"user.oldScore": this.data.user.score});
       wx.navigateTo({"url": "/pages/alert-page/alert-page?res=success&msg=积分修改成功!&from=play-vip"});
@@ -65,22 +68,26 @@ Page({
       if(this.data.user.oldType!="day") {
         this.setData({"user.leftCount": "0"});
       }
+      if(!this.data.user.leftCount) {
+        wx.showToast({ title: "请设置剩余次数！", duration: 3000, icon: 'error' });
+        return;
+      }
       const url = "/consumer/left-count/"+this.data.user.phone+"/"+this.data.user.leftCount;
       this.setData({"user.oldLeftCount":this.data.user.leftCount});
       await updateLeftCountByPhone(url, this.data.openId, this.data.token);
+      const playUrl = "/consumers-play";
+      const data:any = {};
+      data.phone = this.data.user.phone;
+      data.item = this.data.selectedValue;
+      if(data.item.length==0) {
+        wx.showToast({ title: "请设置项目！", duration: 3000, icon: 'error' });
+        return;
+      }
+      await addVipPlay(playUrl, this.data.openId, this.data.token, data);
       wx.navigateTo({"url": "/pages/alert-page/alert-page?res=success&msg=划卡成功!&from=play-vip"});
     } catch(e) {
       wx.navigateTo({"url": "/pages/alert-page/alert-page?res=fail&msg=划卡失败!&from=play-vip"});
       return;
-    }
-    try {
-      const url = "/consumers-play";
-      const data:any = {};
-      data.phone = this.data.user.phone;
-      data.item = this.data.selectedValue;
-      await addVipPlay(url, this.data.openId, this.data.token, data);
-    } catch(e) {
-      wx.showToast({ title: "划卡失败！",    duration: 3000, icon: 'error' });
     }
   },
 
@@ -144,7 +151,7 @@ Page({
       const findPlayItemsRes = await findPlayItems(url, this.data.openId, this.data.token);
       const findItems:any = [];
       findPlayItemsRes.forEach((ele: { name: any; }) => {
-        findItems.push({"name":ele.name, "value": ele.name})
+        findItems.push({"name":ele.name, "value": ele.name, "checked": false})
       });
       this.setData({items: findItems});
     } catch(e) {

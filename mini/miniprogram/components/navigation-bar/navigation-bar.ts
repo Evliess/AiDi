@@ -12,11 +12,7 @@ Component({
   attached: function () { },
   methods: {
     goHome: function () {
-      if(wx.getStorageSync("token")==0) {
-        wx.redirectTo({ url: "/pages/index/index" });
-      } else {
-        wx.redirectTo({ url: "/pages/home/home" });
-      }
+      wx.redirectTo({ url: "/pages/home/home" });
     },
     goBack: function () {
       const pages = getCurrentPages();
